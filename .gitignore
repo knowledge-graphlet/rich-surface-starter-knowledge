@@ -2,3 +2,7 @@ target/
 _git-init*
 **/.claude/standards/
 **/.asciidoctorconfig
+# BEGIN ike-managed
+# IKE local state (never committed)
+.ike/vcs-state
+# END ike-managed
