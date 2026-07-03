@@ -19,9 +19,9 @@ import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.TinkarTerm;
 
-import static network.ike.richsurface.terms.RichSurfaceTerms.RICH_SURFACE;
-import static network.ike.richsurface.terms.RichSurfaceTerms.RICH_SURFACE_MODULE;
-import static network.ike.richsurface.terms.RichSurfaceTerms.RICH_SURFACE_ROOT;
+import static network.ike.richsurface.terms.RichSurface.RICH_SURFACE;
+import static network.ike.richsurface.terms.RichSurface.RICH_SURFACE_MODULE;
+import static network.ike.richsurface.terms.RichSurface.RICH_SURFACE_ROOT;
 
 /**
  * Wave 1 of the RichSurfaceTerms ledger — the journal chronology model of

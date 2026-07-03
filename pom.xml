@@ -66,6 +66,7 @@
 
     <subprojects>
         <subproject>rich-surface-terms</subproject>
+        <subproject>rich-surface-bindings</subproject>
         <subproject>rich-surface-doc</subproject>
     </subprojects>
 </project>

@@ -19,20 +19,22 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.terms.EntityProxy;
 
 /**
- * The RichSurfaceTerms bindings: the knowledge set — whose UUID is the content set's
- * single identity literal — and the reference handles for its concepts. Every identity
- * in this set is {@code T5(setUuid, fullyQualifiedNameAtBirth)}; the constants here are
- * handles derived from birth FQNs, never independent identity sources, so renaming a
- * constant changes nothing and a handle can be reconstructed from the ledger alone.
+ * The RichSurface knowledge set — its UUID is the content set's single identity literal —
+ * and the ledger-internal reference handles. Every identity in this set is
+ * {@code T5(setUuid, fullyQualifiedNameAtBirth)}; the handles here are derived from
+ * birth FQNs, never independent identity sources, so renaming one changes nothing.
  * <p>
- * Handles are declared for content other declarations reference (parents in stated
- * axioms, the module concept in stamps). The full inventory this set realizes is the
+ * Handles are declared only for content the ledger itself references (parents in stated
+ * axioms, the module concept in stamps). Downstream consumers do not use this class:
+ * they depend on the <em>generated</em> {@code RichSurfaceTerms} bindings artifact
+ * ({@code rich-surface-bindings}), produced from this ledger by
+ * {@code ike:knowledge-bindings}. The inventory this set realizes is the
  * {@code dev-rich-surface-terms-inventory} topic in the Kompendium (Part IV), tracked
  * by {@code IKE-Network/ike-issues#807}.
  */
-public final class RichSurfaceTerms {
+public final class RichSurface {
 
-    private RichSurfaceTerms() {
+    private RichSurface() {
     }
 
     /** The knowledge set — its UUID is the only identity literal in this module. */

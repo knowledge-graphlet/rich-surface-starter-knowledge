@@ -54,8 +54,8 @@ class Wave1ReplayTest {
         PrimitiveData.selectControllerByName("Load Ephemeral Store");
         PrimitiveData.start();
         Wave1.compose();
-        RichSurfaceTerms.RICH_SURFACE.write();
-        RichSurfaceTerms.RICH_SURFACE.write(); // idempotence: same identities, stamps, versions
+        RichSurface.RICH_SURFACE.write();
+        RichSurface.RICH_SURFACE.write(); // idempotence: same identities, stamps, versions
     }
 
     @AfterAll
@@ -67,7 +67,7 @@ class Wave1ReplayTest {
     @DisplayName("Wave-1 concepts replay with inception stamps, once")
     void conceptsReplay() {
         ConceptEntity<?> journalElement =
-                EntityHandle.get(RichSurfaceTerms.JOURNAL_ELEMENT.nid()).expectConcept();
+                EntityHandle.get(RichSurface.JOURNAL_ELEMENT.nid()).expectConcept();
         assertNotNull(journalElement);
         assertEquals(1, journalElement.versions().size(), "replay must not duplicate versions");
 
@@ -75,9 +75,9 @@ class Wave1ReplayTest {
         assertEquals(State.ACTIVE, stamp.state());
         // Restating the inception tuple derives the same stamp — tuple identity.
         assertEquals(Stamp.active("2026-07-03T00:00:00Z", TinkarTerm.USER,
-                RichSurfaceTerms.RICH_SURFACE_MODULE, TinkarTerm.DEVELOPMENT_PATH).time(),
+                RichSurface.RICH_SURFACE_MODULE, TinkarTerm.DEVELOPMENT_PATH).time(),
                 stamp.time());
-        assertEquals(RichSurfaceTerms.RICH_SURFACE_MODULE.nid(), stamp.moduleNid(),
+        assertEquals(RichSurface.RICH_SURFACE_MODULE.nid(), stamp.moduleNid(),
                 "stamps are scoped by the set's own module concept");
     }
 
@@ -85,9 +85,9 @@ class Wave1ReplayTest {
     @DisplayName("The module concept is self-scoped and carries its descriptions")
     void moduleConceptSelfScoped() {
         ConceptEntity<?> module =
-                EntityHandle.get(RichSurfaceTerms.RICH_SURFACE_MODULE.nid()).expectConcept();
+                EntityHandle.get(RichSurface.RICH_SURFACE_MODULE.nid()).expectConcept();
         assertEquals(1, module.versions().size());
-        assertEquals(RichSurfaceTerms.RICH_SURFACE_MODULE.nid(),
+        assertEquals(RichSurface.RICH_SURFACE_MODULE.nid(),
                 Entity.getStamp(module.versions().get(0).stampNid()).moduleNid(),
                 "the module concept's own versions cite the module — well-defined under derived identity");
 
@@ -100,7 +100,7 @@ class Wave1ReplayTest {
     @DisplayName("Journal element classifies under the RichSurfaceTerms root")
     void journalElementAxioms() {
         int[] axiomNids = EntityService.get().semanticNidsForComponentOfPattern(
-                RichSurfaceTerms.JOURNAL_ELEMENT.nid(),
+                RichSurface.JOURNAL_ELEMENT.nid(),
                 TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid());
         assertEquals(1, axiomNids.length);
     }

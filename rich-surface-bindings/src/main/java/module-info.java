@@ -15,14 +15,12 @@
  */
 
 /**
- * The RichSurfaceTerms ledger: the append-only, replayable source of the starter
- * knowledge backing the chronology-backed rich interaction surface.
+ * Generated bindings for the RichSurface knowledge set: the {@code RichSurfaceTerms}
+ * constants class, produced from the ledger by {@code ike:knowledge-bindings}.
  */
-module network.ike.richsurface.terms {
-    requires transitive dev.ikm.tinkar.entity;
+module network.ike.richsurface.bindings {
+    requires transitive dev.ikm.tinkar.common;
+    requires transitive dev.ikm.tinkar.terms;
 
-    exports network.ike.richsurface.terms;
-
-    provides dev.ikm.tinkar.entity.builder.KnowledgeSource
-            with network.ike.richsurface.terms.RichSurfaceSource;
+    exports network.ike.richsurface.bindings;
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd">
+    <modelVersion>4.1.0</modelVersion>
+
+    <parent>
+        <groupId>network.ike.komet</groupId>
+        <artifactId>rich-surface-starter-knowledge</artifactId>
+    </parent>
+
+    <artifactId>rich-surface-bindings</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Rich Surface Bindings</name>
+    <description>
+        Generated bindings for the RichSurface knowledge set: the TinkarTerm-idiom
+        RichSurfaceTerms class, produced from the ledger by ike:knowledge-bindings —
+        resolved UUID literals, definitions as javadoc, autocompletable in any IDE.
+        Depends only on tinkar terms, so consumers stay light.
+    </description>
+
+    <dependencies>
+        <!-- The generated class's only compile-time surface -->
+        <dependency>
+            <groupId>dev.ikm.tinkar</groupId>
+            <artifactId>terms</artifactId>
+            <version>${tinkar.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.ikm.tinkar</groupId>
+            <artifactId>common</artifactId>
+            <version>${tinkar.version}</version>
+        </dependency>
+
+        <!-- The ledger this module generates from. Optional: on this module's own
+             MAIN_RUNTIME classpath for ike:knowledge-bindings discovery, but never
+             propagated to consumers of the bindings artifact. -->
+        <dependency>
+            <groupId>network.ike.komet</groupId>
+            <artifactId>rich-surface-terms</artifactId>
+            <version>${project.version}</version>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>network.ike.tooling</groupId>
+                <artifactId>ike-maven-plugin</artifactId>
+                <!-- INTERIM: knowledge-bindings ships in 234 (ike-issues#824);
+                     pinned to the snapshot until the tooling release cascades. -->
+                <version>234-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <id>generate-knowledge-bindings</id>
+                        <goals>
+                            <goal>knowledge-bindings</goal>
+                        </goals>
+                        <configuration>
+                            <packageName>network.ike.richsurface.bindings</packageName>
+                            <className>RichSurfaceTerms</className>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
