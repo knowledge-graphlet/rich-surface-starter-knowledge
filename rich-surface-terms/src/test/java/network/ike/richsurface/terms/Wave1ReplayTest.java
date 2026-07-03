@@ -54,8 +54,8 @@ class Wave1ReplayTest {
         PrimitiveData.selectControllerByName("Load Ephemeral Store");
         PrimitiveData.start();
         Wave1.compose();
-        RichSurfaceTerms.NAMESPACE.write();
-        RichSurfaceTerms.NAMESPACE.write(); // idempotence: same identities, stamps, versions
+        RichSurfaceTerms.RICH_SURFACE.write();
+        RichSurfaceTerms.RICH_SURFACE.write(); // idempotence: same identities, stamps, versions
     }
 
     @AfterAll

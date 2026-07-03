@@ -34,11 +34,12 @@ same stamp, and no shared stamp constants are needed. Retirement is a new
 inactive stamp; stamps are appended, never edited.
 
 Birth-FQN identity::
-A concept's identity is `T5(namespace, fullyQualifiedNameAtBirth)` — identity
-cannot be minted without a meaningful name, and one namespace UUID replaces
+A concept's identity is `T5(setUuid, fullyQualifiedNameAtBirth)` — the
+*knowledge set's* UUID is the type-5 namespace every identity derives from —
+so identity cannot be minted without a meaningful name, and one UUID replaces
 one literal per concept. The binding constants in `RichSurfaceTerms` are
 handles derived from birth FQNs, never independent identity sources. A birth
-FQN is never reused within the namespace, even after retirement.
+FQN is never reused within the knowledge set, even after retirement.
 
 Append-only, resumable declarations::
 Once released, a declaration is permanent: revisions and retirements append

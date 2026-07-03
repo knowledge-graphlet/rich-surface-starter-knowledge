@@ -15,15 +15,15 @@
  */
 package network.ike.richsurface.terms;
 
-import dev.ikm.tinkar.entity.builder.Namespace;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.terms.EntityProxy;
 
 /**
- * The RichSurfaceTerms bindings: the namespace — the content set's single identity
- * literal — and the reference handles for its concepts. Every identity in this set is
- * {@code T5(NAMESPACE, fullyQualifiedNameAtBirth)}; the constants here are handles
- * derived from birth FQNs, never independent identity sources, so renaming a constant
- * changes nothing and a handle can be reconstructed from the ledger alone.
+ * The RichSurfaceTerms bindings: the knowledge set — whose UUID is the content set's
+ * single identity literal — and the reference handles for its concepts. Every identity
+ * in this set is {@code T5(setUuid, fullyQualifiedNameAtBirth)}; the constants here are
+ * handles derived from birth FQNs, never independent identity sources, so renaming a
+ * constant changes nothing and a handle can be reconstructed from the ledger alone.
  * <p>
  * Handles are declared for content other declarations reference (parents in stated
  * axioms, the module concept in stamps). The full inventory this set realizes is the
@@ -35,9 +35,9 @@ public final class RichSurfaceTerms {
     private RichSurfaceTerms() {
     }
 
-    /** The content set's identity root — the only identity literal in this module. */
-    public static final Namespace NAMESPACE =
-            Namespace.of("eaa95241-1a1b-4c48-8266-4be1fe9124b0");
+    /** The knowledge set — its UUID is the only identity literal in this module. */
+    public static final KnowledgeSet RICH_SURFACE =
+            KnowledgeSet.of("eaa95241-1a1b-4c48-8266-4be1fe9124b0");
 
     /**
      * The tinkar module concept that scopes every stamp in this set — the STAMP
@@ -46,13 +46,13 @@ public final class RichSurfaceTerms {
      * well-defined because references resolve by derived identity.
      */
     public static final EntityProxy.Concept RICH_SURFACE_MODULE =
-            NAMESPACE.conceptRef("RichSurfaceTerms module (RichSurfaceTerms)");
+            RICH_SURFACE.conceptRef("RichSurfaceTerms module (RichSurfaceTerms)");
 
     /** The root concept under which the element-kind taxonomy classifies. Declared in {@link Wave1}. */
     public static final EntityProxy.Concept RICH_SURFACE_ROOT =
-            NAMESPACE.conceptRef("RichSurfaceTerms root (RichSurfaceTerms)");
+            RICH_SURFACE.conceptRef("RichSurfaceTerms root (RichSurfaceTerms)");
 
     /** Root kind of the blocks a conversation journal orders. Declared in {@link Wave1}. */
     public static final EntityProxy.Concept JOURNAL_ELEMENT =
-            NAMESPACE.conceptRef("Journal element (RichSurfaceTerms)");
+            RICH_SURFACE.conceptRef("Journal element (RichSurfaceTerms)");
 }

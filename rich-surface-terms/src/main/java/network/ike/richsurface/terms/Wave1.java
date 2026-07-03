@@ -19,7 +19,7 @@ import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.TinkarTerm;
 
-import static network.ike.richsurface.terms.RichSurfaceTerms.NAMESPACE;
+import static network.ike.richsurface.terms.RichSurfaceTerms.RICH_SURFACE;
 import static network.ike.richsurface.terms.RichSurfaceTerms.RICH_SURFACE_MODULE;
 import static network.ike.richsurface.terms.RichSurfaceTerms.RICH_SURFACE_ROOT;
 
@@ -42,8 +42,8 @@ public final class Wave1 {
     }
 
     /**
-     * Composes the wave-1 declarations into the namespace session. The caller writes the
-     * session ({@link dev.ikm.tinkar.entity.builder.Namespace#write()}) when composition
+     * Composes the wave-1 declarations into the knowledge-set session. The caller writes the
+     * session ({@link dev.ikm.tinkar.entity.builder.KnowledgeSet#write()}) when composition
      * is complete; writing is idempotent — replay produces the same identities, stamps,
      * and versions.
      */
@@ -58,18 +58,18 @@ public final class Wave1 {
 
         // The module concept every stamp in this set cites — including its own
         // versions' stamps; self-reference is well-defined under derived identity.
-        NAMESPACE.concept("RichSurfaceTerms module (RichSurfaceTerms)").at(inception)
+        RICH_SURFACE.concept("RichSurfaceTerms module (RichSurfaceTerms)").at(inception)
                 .synonym("RichSurfaceTerms module")
                 .definition("The tinkar module scoping every stamp of the RichSurfaceTerms"
                         + " content set; the export dimension for this knowledge, in whole"
                         + " or in part.");
 
-        NAMESPACE.concept("RichSurfaceTerms root (RichSurfaceTerms)").at(inception)
+        RICH_SURFACE.concept("RichSurfaceTerms root (RichSurfaceTerms)").at(inception)
                 .synonym("RichSurfaceTerms root")
                 .definition("Root concept of the RichSurfaceTerms starter knowledge for"
                         + " the chronology-backed rich interaction surface.");
 
-        NAMESPACE.concept("Journal element (RichSurfaceTerms)").at(inception)
+        RICH_SURFACE.concept("Journal element (RichSurfaceTerms)").at(inception)
                 .synonym("Journal element")
                 .definition("Root kind of the blocks a conversation journal orders.")
                 .statedAxioms(leb -> leb.NecessarySet(leb.And(
