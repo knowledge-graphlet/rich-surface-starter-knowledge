@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd">
+    <modelVersion>4.1.0</modelVersion>
+
+    <parent>
+        <groupId>network.ike.komet</groupId>
+        <artifactId>rich-surface-starter-knowledge</artifactId>
+    </parent>
+
+    <artifactId>rich-surface-doc</artifactId>
+    <packaging>pom</packaging>
+
+    <name>Rich Surface Starter Knowledge — Guide</name>
+    <description>
+        Documentation for the RichSurfaceTerms starter knowledge: the ledger model,
+        the content inventory it realizes, and how the change-set artifacts are
+        built, reviewed, and released.
+    </description>
+
+    <properties>
+        <pdf.source.document>rich-surface-guide</pdf.source.document>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

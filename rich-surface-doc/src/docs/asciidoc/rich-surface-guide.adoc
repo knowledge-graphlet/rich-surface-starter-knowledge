@@ -1,0 +1,62 @@
+= Rich Surface Starter Knowledge
+:subtitle: The RichSurfaceTerms Ledger — Model, Inventory, and Releases
+:doctype: book
+:toc: left
+:toclevels: 2
+:sectnums:
+:source-highlighter: rouge
+:icons: font
+
+[preface]
+== About This Document
+
+This guide documents the *RichSurfaceTerms* starter knowledge: the content set
+that defines the meanings, purposes, and patterns backing the chronology-backed
+rich interaction surface and the Scriptorium
+(`IKE-Network/ike-issues#806`–`#812`).
+
+The authoritative artifact is the *ledger* — the Java source in
+`rich-surface-terms` — an append-only record of declared stamps and versioned
+declarations. Building the module replays the ledger; the released artifact is
+a *change set*. A starter set is simply a change set whose base is the empty
+store.
+
+== The Ledger Model
+
+Three disciplines govern the source:
+
+Declared stamps::
+Every version binds to a stamp declared in the stamp file
+(`RichSurfaceStamps`) — an explicit (status, time, author, module, path)
+tuple with a literal time. Stamps are appended, never edited; retirement is
+a new inactive stamp. Stamp identity derives from the tuple, so replay is
+idempotent at the stamp level.
+
+Birth-FQN identity::
+A concept's identity is `T5(namespace, fullyQualifiedNameAtBirth)` — identity
+cannot be minted without a meaningful name, and one namespace UUID replaces
+one literal per concept. The binding constants in `RichSurfaceTerms` are
+handles derived from birth FQNs, never independent identity sources. A birth
+FQN is never reused within the namespace, even after retirement.
+
+Append-only declarations::
+Once released, a declaration block is permanent: revisions and retirements
+append new `.at(stamp)` scopes; nothing is deleted. The file reads as
+history; the resolved current state is the draft report's job.
+
+== Content Inventory
+
+The content this set realizes — element-kind taxonomy, property keys, the
+journal manifest and element patterns, module policies, and path classes — is
+enumerated wave by wave in the *RichSurfaceTerms Inventory*
+(`dev-rich-surface-terms-inventory`, Kompendium Part IV). Wave 1 is the journal
+chronology model of `IKE-Network/ike-issues#807`.
+
+== Building and Releasing
+
+`mvn clean verify` replays the ledger into an ephemeral store and verifies the
+declared chronologies, including replay idempotence. The change-set export
+module (planned) attaches the `.pb.zip` artifact — full, and delta against the
+prior release — with the release verifier enforcing the append-only guards:
+presence of every released declaration, no birth-FQN reuse, and no mutation of
+released history.

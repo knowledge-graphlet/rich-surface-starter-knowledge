@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd">
+    <modelVersion>4.1.0</modelVersion>
+
+    <parent>
+        <groupId>network.ike.platform</groupId>
+        <artifactId>ike-parent</artifactId>
+        <version>131</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>network.ike.komet</groupId>
+    <artifactId>rich-surface-starter-knowledge</artifactId>
+    <version>1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Rich Surface Starter Knowledge</name>
+    <description>
+        RichSurfaceTerms starter knowledge: the ledger-form content module for the
+        chronology-backed rich interaction surface. The source is an append-only
+        version ledger (declared stamps, birth-FQN identity); building replays the
+        ledger; the released artifact is a change set.
+    </description>
+    <url>https://ike.network/rich-surface-starter-knowledge/</url>
+    <inceptionYear>2026</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>IKE Network</name>
+        <url>https://ike.network</url>
+    </organization>
+
+    <scm>
+        <connection>scm:git:https://github.com/knowledge-graphlet/rich-surface-starter-knowledge.git</connection>
+        <developerConnection>scm:git:git@github.com:knowledge-graphlet/rich-surface-starter-knowledge.git</developerConnection>
+        <url>https://github.com/knowledge-graphlet/rich-surface-starter-knowledge</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <!-- Required: ike-parent's enforcer fails an inheriting project whose
+         effective site URL still starts with https://ike.network/ike-platform/
+         while its groupId is not network.ike.platform (ike-issues#380/#383). -->
+    <distributionManagement>
+        <site>
+            <id>ike-site</id>
+            <url>https://ike.network/rich-surface-starter-knowledge/</url>
+        </site>
+    </distributionManagement>
+
+    <properties>
+        <!-- INTERIM: the chronology-builder authoring tier (ike-issues#822) lives on
+             the ike-komet-wsr꞉chronology-builder sibling; this version resolves only
+             from a local .m2 where that sibling has been installed. Flips to the
+             main-line tinkar version when the feature merges. -->
+        <tinkar.version>1.127.2-chronology-builder-SNAPSHOT</tinkar.version>
+    </properties>
+
+    <subprojects>
+        <subproject>rich-surface-terms</subproject>
+        <subproject>rich-surface-doc</subproject>
+    </subprojects>
+</project>
