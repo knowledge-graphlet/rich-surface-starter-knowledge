@@ -1,2 +1,4 @@
 target/
 _git-init*
+**/.claude/standards/
+**/.asciidoctorconfig
