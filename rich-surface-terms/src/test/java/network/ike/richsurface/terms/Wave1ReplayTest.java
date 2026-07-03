@@ -24,6 +24,7 @@ import dev.ikm.tinkar.entity.Entity;
 import dev.ikm.tinkar.entity.EntityHandle;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.StampEntity;
+import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.State;
 import dev.ikm.tinkar.terms.TinkarTerm;
 import org.junit.jupiter.api.AfterAll;
@@ -53,7 +54,8 @@ class Wave1ReplayTest {
         PrimitiveData.selectControllerByName("Load Ephemeral Store");
         PrimitiveData.start();
         Wave1.compose();
-        Wave1.compose(); // idempotence: same identities, stamps, versions
+        RichSurfaceTerms.NAMESPACE.write();
+        RichSurfaceTerms.NAMESPACE.write(); // idempotence: same identities, stamps, versions
     }
 
     @AfterAll
@@ -71,7 +73,10 @@ class Wave1ReplayTest {
 
         StampEntity<?> stamp = Entity.getStamp(journalElement.versions().get(0).stampNid());
         assertEquals(State.ACTIVE, stamp.state());
-        assertEquals(RichSurfaceStamps.INCEPTION.time(), stamp.time());
+        // Restating the inception tuple derives the same stamp — tuple identity.
+        assertEquals(Stamp.active("2026-07-03T00:00:00Z", TinkarTerm.USER,
+                RichSurfaceTerms.RICH_SURFACE_MODULE, TinkarTerm.DEVELOPMENT_PATH).time(),
+                stamp.time());
         assertEquals(RichSurfaceTerms.RICH_SURFACE_MODULE.nid(), stamp.moduleNid(),
                 "stamps are scoped by the set's own module concept");
     }

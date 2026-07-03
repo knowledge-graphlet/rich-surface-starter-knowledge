@@ -14,9 +14,10 @@
 
     <name>Rich Surface Terms</name>
     <description>
-        The RichSurfaceTerms ledger: stamp file, namespace, and the wave declarations
-        authored with the tinkar chronology builders. Replay is verified over an
-        ephemeral store; the change-set export module consumes this ledger.
+        The RichSurfaceTerms ledger: the namespace and the time-major wave
+        declarations — stamps declared inline, edits under each — authored with the
+        tinkar chronology builders. Replay is verified over an ephemeral store; the
+        change-set export module consumes this ledger.
     </description>
 
     <dependencies>

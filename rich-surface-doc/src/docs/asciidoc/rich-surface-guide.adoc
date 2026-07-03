@@ -25,12 +25,13 @@ store.
 
 Three disciplines govern the source:
 
-Declared stamps::
-Every version binds to a stamp declared in the stamp file
-(`RichSurfaceStamps`) — an explicit (status, time, author, module, path)
-tuple with a literal time. Stamps are appended, never edited; retirement is
-a new inactive stamp. Stamp identity derives from the tuple, so replay is
-idempotent at the stamp level.
+Declared stamps, inline::
+The ledger reads time-major: a stamp — an explicit (status, time, author,
+module, path) tuple with a literal time — is declared inline at its position
+in the ledger, and the edits under it follow, across any components. Stamp
+identity derives from the tuple, so restating the same tuple anywhere is the
+same stamp, and no shared stamp constants are needed. Retirement is a new
+inactive stamp; stamps are appended, never edited.
 
 Birth-FQN identity::
 A concept's identity is `T5(namespace, fullyQualifiedNameAtBirth)` — identity
@@ -39,10 +40,12 @@ one literal per concept. The binding constants in `RichSurfaceTerms` are
 handles derived from birth FQNs, never independent identity sources. A birth
 FQN is never reused within the namespace, even after retirement.
 
-Append-only declarations::
-Once released, a declaration block is permanent: revisions and retirements
-append new `.at(stamp)` scopes; nothing is deleted. The file reads as
-history; the resolved current state is the draft report's job.
+Append-only, resumable declarations::
+Once released, a declaration is permanent: revisions and retirements append
+new `.at(stamp)` scopes; nothing is deleted. A component is pulled back up
+by its birth FQN at any later point in the ledger and simply continues —
+nothing is restated — so the source composes as one continuous ledger. The
+file reads as history; the resolved current state is the draft report's job.
 
 == Content Inventory
 

@@ -15,8 +15,12 @@
  */
 package network.ike.richsurface.terms;
 
-import static network.ike.richsurface.terms.RichSurfaceStamps.INCEPTION;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.Stamp;
+import dev.ikm.tinkar.terms.TinkarTerm;
+
 import static network.ike.richsurface.terms.RichSurfaceTerms.NAMESPACE;
+import static network.ike.richsurface.terms.RichSurfaceTerms.RICH_SURFACE_MODULE;
 import static network.ike.richsurface.terms.RichSurfaceTerms.RICH_SURFACE_ROOT;
 
 /**
@@ -25,11 +29,12 @@ import static network.ike.richsurface.terms.RichSurfaceTerms.RICH_SURFACE_ROOT;
  * topic: the module and root concepts, the element-kind taxonomy, the property keys,
  * and the manifest and element patterns.
  * <p>
- * This file is an append-only version ledger: declarations are appended and revised
- * through new {@code .at(stamp)} scopes, never edited in place once released. Identity
- * derives from each declaration's fully qualified name at birth; the birth FQN is
- * therefore permanent (revising the FQN display text later is fine — the seed is
- * recorded by the ledger's history).
+ * The file reads time-major, as a true ledger: a stamp is declared inline, the edits
+ * under it follow — across any components — then the next stamp, and so on. Components
+ * are pulled back up by their birth FQN and simply continue; nothing is restated.
+ * Declarations are appended, never edited in place once released; identity derives from
+ * each declaration's fully qualified name at birth, so the birth FQN is permanent
+ * (revising its display text later is a new version, not a new identity).
  */
 public final class Wave1 {
 
@@ -37,36 +42,37 @@ public final class Wave1 {
     }
 
     /**
-     * Replays the wave-1 declarations into the open datastore. Requires a started
-     * {@code PrimitiveData} store; deterministic — replaying again writes the same
-     * identities, stamps, and versions.
+     * Composes the wave-1 declarations into the namespace session. The caller writes the
+     * session ({@link dev.ikm.tinkar.entity.builder.Namespace#write()}) when composition
+     * is complete; writing is idempotent — replay produces the same identities, stamps,
+     * and versions.
      */
     public static void compose() {
-        // The module concept every stamp in this set cites. Its own versions carry
-        // those stamps — self-reference is well-defined under derived identity.
-        NAMESPACE.concept("RichSurfaceTerms module (RichSurfaceTerms)")
-                .at(INCEPTION)
-                    .synonym("RichSurfaceTerms module")
-                    .definition("The tinkar module scoping every stamp of the RichSurfaceTerms"
-                            + " content set; the export dimension for this knowledge, in whole"
-                            + " or in part.")
-                .build();
 
-        // The taxonomy root for this content set.
-        NAMESPACE.concept("RichSurfaceTerms root (RichSurfaceTerms)")
-                .at(INCEPTION)
-                    .synonym("RichSurfaceTerms root")
-                    .definition("Root concept of the RichSurfaceTerms starter knowledge for"
-                            + " the chronology-backed rich interaction surface.")
-                .build();
+        // ============================================================ 2026-07-03
+        // Inception: the set's own module, the taxonomy root, and the first
+        // element kind. Author is the generic user concept pending a
+        // curator-identity decision.
+        ActiveStamp inception = Stamp.active("2026-07-03T00:00:00Z",
+                TinkarTerm.USER, RICH_SURFACE_MODULE, TinkarTerm.DEVELOPMENT_PATH);
 
-        // Root of the element kinds (inventory: element-kind taxonomy, wave 1).
-        NAMESPACE.concept("Journal element (RichSurfaceTerms)")
-                .at(INCEPTION)
-                    .synonym("Journal element")
-                    .definition("Root kind of the blocks a conversation journal orders.")
-                    .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                            leb.ConceptAxiom(RICH_SURFACE_ROOT))))
-                .build();
+        // The module concept every stamp in this set cites — including its own
+        // versions' stamps; self-reference is well-defined under derived identity.
+        NAMESPACE.concept("RichSurfaceTerms module (RichSurfaceTerms)").at(inception)
+                .synonym("RichSurfaceTerms module")
+                .definition("The tinkar module scoping every stamp of the RichSurfaceTerms"
+                        + " content set; the export dimension for this knowledge, in whole"
+                        + " or in part.");
+
+        NAMESPACE.concept("RichSurfaceTerms root (RichSurfaceTerms)").at(inception)
+                .synonym("RichSurfaceTerms root")
+                .definition("Root concept of the RichSurfaceTerms starter knowledge for"
+                        + " the chronology-backed rich interaction surface.");
+
+        NAMESPACE.concept("Journal element (RichSurfaceTerms)").at(inception)
+                .synonym("Journal element")
+                .definition("Root kind of the blocks a conversation journal orders.")
+                .statedAxioms(leb -> leb.NecessarySet(leb.And(
+                        leb.ConceptAxiom(RICH_SURFACE_ROOT))));
     }
 }
