@@ -39,22 +39,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * Replays the wave-1 ledger into an ephemeral store and verifies the declared
- * chronologies — including that replaying twice is idempotent.
+ * Replays the full ledger — every functional section, via the set's
+ * {@code KnowledgeSetSource} — into an ephemeral store and verifies the declared
+ * chronologies, including that replaying twice is idempotent.
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class Wave1ReplayTest {
+class LedgerReplayTest {
 
     @BeforeAll
     static void beforeAll() {
         CachingService.clearAll();
         ServiceProperties.set(ServiceKeys.DATA_STORE_ROOT,
                 Path.of(System.getProperty("user.dir"))
-                        .resolve("target").resolve("Wave1ReplayTest").resolve("datastore").toFile());
+                        .resolve("target").resolve("LedgerReplayTest").resolve("datastore").toFile());
         PrimitiveData.selectControllerByName("Load Ephemeral Store");
         PrimitiveData.start();
-        Wave1.compose();
-        RichSurface.RICH_SURFACE.write();
+        new RichSurfaceSource().compose().write();
         RichSurface.RICH_SURFACE.write(); // idempotence: same identities, stamps, versions
     }
 
@@ -64,7 +64,7 @@ class Wave1ReplayTest {
     }
 
     @Test
-    @DisplayName("Wave-1 concepts replay with inception stamps, once")
+    @DisplayName("ConceptSet concepts replay with inception stamps, once")
     void conceptsReplay() {
         ConceptEntity<?> journalElement =
                 EntityHandle.get(RichSurface.JOURNAL_ELEMENT.nid()).expectConcept();

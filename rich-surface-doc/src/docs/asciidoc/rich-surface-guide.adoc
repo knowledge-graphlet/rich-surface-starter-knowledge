@@ -16,7 +16,9 @@ rich interaction surface and the Scriptorium
 (`IKE-Network/ike-issues#806`–`#812`).
 
 The authoritative artifact is the *ledger* — the Java source in
-`rich-surface-terms` — an append-only record of declared stamps and versioned
+`rich-surface-terms`, organized in functional sections (`ConceptSet`,
+`MeaningAndPurposeSet`, `PatternSet`) composed by the set's
+`KnowledgeSetSource` — an append-only record of declared stamps and versioned
 declarations. Building the module replays the ledger; the released artifact is
 a *change set*. A starter set is simply a change set whose base is the empty
 store.

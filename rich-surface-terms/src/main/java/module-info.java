@@ -23,6 +23,6 @@ module network.ike.richsurface.terms {
 
     exports network.ike.richsurface.terms;
 
-    provides dev.ikm.tinkar.entity.builder.KnowledgeSource
+    provides dev.ikm.tinkar.entity.builder.KnowledgeSetSource
             with network.ike.richsurface.terms.RichSurfaceSource;
 }

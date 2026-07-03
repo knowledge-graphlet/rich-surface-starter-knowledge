@@ -16,14 +16,15 @@
 package network.ike.richsurface.terms;
 
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.KnowledgeSource;
+import dev.ikm.tinkar.entity.builder.KnowledgeSetSource;
 
 /**
- * The {@link KnowledgeSource} this ledger module provides: composes every wave into the
- * RichSurface session. Discovered by build tooling ({@code ike:knowledge-bindings},
- * change-set export, the release verifier) via {@link java.util.ServiceLoader}.
+ * The {@link KnowledgeSetSource} this ledger module provides: composes every functional
+ * section into the RichSurface session. Discovered by build tooling
+ * ({@code ike:knowledge-bindings}, change-set export, the release verifier) via
+ * {@link java.util.ServiceLoader}.
  */
-public final class RichSurfaceSource implements KnowledgeSource {
+public final class RichSurfaceSource implements KnowledgeSetSource {
 
     /**
      * Creates the source. Public no-arg constructor for {@link java.util.ServiceLoader}.
@@ -32,13 +33,17 @@ public final class RichSurfaceSource implements KnowledgeSource {
     }
 
     /**
-     * Composes the full RichSurface ledger — every wave, in order.
+     * Composes the full RichSurface ledger — every functional section, in reading
+     * order. Sections are independent (references resolve by derived identity); the
+     * order here is for the reader.
      *
      * @return the composed knowledge set
      */
     @Override
     public KnowledgeSet compose() {
-        Wave1.compose();
+        MeaningAndPurposeSet.compose();
+        ConceptSet.compose();
+        PatternSet.compose();
         return RichSurface.RICH_SURFACE;
     }
 }

@@ -44,17 +44,17 @@ public final class RichSurface {
     /**
      * The tinkar module concept that scopes every stamp in this set — the STAMP
      * dimension by which this content is exported, in whole or in part. Declared in
-     * {@link Wave1}; self-referentially cited by the stamps that version it, which is
+     * {@link ConceptSet}; self-referentially cited by the stamps that version it, which is
      * well-defined because references resolve by derived identity.
      */
     public static final EntityProxy.Concept RICH_SURFACE_MODULE =
             RICH_SURFACE.conceptRef("RichSurfaceTerms module (RichSurfaceTerms)");
 
-    /** The root concept under which the element-kind taxonomy classifies. Declared in {@link Wave1}. */
+    /** The root concept under which the element-kind taxonomy classifies. Declared in {@link ConceptSet}. */
     public static final EntityProxy.Concept RICH_SURFACE_ROOT =
             RICH_SURFACE.conceptRef("RichSurfaceTerms root (RichSurfaceTerms)");
 
-    /** Root kind of the blocks a conversation journal orders. Declared in {@link Wave1}. */
+    /** Root kind of the blocks a conversation journal orders. Declared in {@link ConceptSet}. */
     public static final EntityProxy.Concept JOURNAL_ELEMENT =
             RICH_SURFACE.conceptRef("Journal element (RichSurfaceTerms)");
 }

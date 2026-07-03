@@ -24,28 +24,26 @@ import static network.ike.richsurface.terms.RichSurface.RICH_SURFACE_MODULE;
 import static network.ike.richsurface.terms.RichSurface.RICH_SURFACE_ROOT;
 
 /**
- * Wave 1 of the RichSurfaceTerms ledger — the journal chronology model of
- * {@code IKE-Network/ike-issues#807}, per the {@code dev-rich-surface-terms-inventory}
- * topic: the module and root concepts, the element-kind taxonomy, the property keys,
- * and the manifest and element patterns.
+ * The concept section of the RichSurfaceTerms ledger: the set's own module and root,
+ * and the element-kind taxonomy of the journal chronology model
+ * ({@code IKE-Network/ike-issues#807}, per {@code dev-rich-surface-terms-inventory}).
  * <p>
  * The file reads time-major, as a true ledger: a stamp is declared inline, the edits
- * under it follow — across any components — then the next stamp, and so on. Components
- * are pulled back up by their birth FQN and simply continue; nothing is restated.
- * Declarations are appended, never edited in place once released; identity derives from
- * each declaration's fully qualified name at birth, so the birth FQN is permanent
- * (revising its display text later is a new version, not a new identity).
+ * under it follow, then the next stamp. Components are pulled back up by their birth
+ * FQN and simply continue; nothing is restated. Declarations are appended, never edited
+ * in place once released; identity derives from each declaration's fully qualified name
+ * at birth, so the birth FQN is permanent (revising its display text later is a new
+ * version, not a new identity).
  */
-public final class Wave1 {
+public final class ConceptSet {
 
-    private Wave1() {
+    private ConceptSet() {
     }
 
     /**
-     * Composes the wave-1 declarations into the knowledge-set session. The caller writes the
-     * session ({@link dev.ikm.tinkar.entity.builder.KnowledgeSet#write()}) when composition
-     * is complete; writing is idempotent — replay produces the same identities, stamps,
-     * and versions.
+     * Composes the concept declarations into the knowledge-set session. The
+     * {@link RichSurfaceSource} orders the sections; {@code KnowledgeSet.write()}
+     * replays the session, idempotently.
      */
     public static void compose() {
 

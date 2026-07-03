@@ -5,8 +5,9 @@ chronology-backed rich interaction surface and the Scriptorium
 ([IKE-Network/ike-issues#806](https://github.com/IKE-Network/ike-issues/issues/806)–#812).
 
 The authoritative artifact is the **ledger** — the Java source in
-`rich-surface-terms`: a time-major, append-only record — stamps declared inline, the edits under
-each following — authored with the tinkar chronology builders
+`rich-surface-terms`: a time-major, append-only record organized in functional sections — stamps
+declared inline, the edits under each following — authored with the tinkar
+chronology builders
 ([#822](https://github.com/IKE-Network/ike-issues/issues/822)). Building replays
 the ledger; the released artifact is a **change set**. A starter set is a change
 set whose base is the empty store.
@@ -15,7 +16,8 @@ set whose base is the empty store.
 
 | Module | Role |
 |--------|------|
-| `rich-surface-terms` | The ledger: namespace, inline-stamped wave declarations; replay verified over an ephemeral store |
+| `rich-surface-terms` | The ledger: functional sections (ConceptSet, MeaningAndPurposeSet, PatternSet), inline-stamped and time-major; replay verified over an ephemeral store |
+| `rich-surface-bindings` | Generated `RichSurfaceTerms` bindings (ike:knowledge-bindings): resolved UUIDs, definitions as javadoc |
 | `rich-surface-doc` | The guide: ledger model, content inventory, build and release discipline |
 
 ## Building
