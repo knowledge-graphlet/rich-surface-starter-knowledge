@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd">
+    <modelVersion>4.1.0</modelVersion>
+
+    <parent>
+        <groupId>network.ike.komet</groupId>
+        <artifactId>rich-surface-starter-knowledge</artifactId>
+    </parent>
+
+    <artifactId>rich-surface-changeset</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Rich Surface Change Set</name>
+    <description>
+        The released form of the RichSurface knowledge set: ike:knowledge-export
+        replays the ledger into a fresh ephemeral store and attaches the protobuf
+        change set (classifier: changeset). A starter set is exactly this artifact
+        applied to an empty base.
+    </description>
+
+    <dependencies>
+        <!-- The ledger this module exports. -->
+        <dependency>
+            <groupId>network.ike.komet</groupId>
+            <artifactId>rich-surface-terms</artifactId>
+            <version>${project.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Replay needs a store: providers at runtime scope; their classpath
+             ServiceLoader registrations live in this module's META-INF/services
+             (tinkar providers declare services in module-info only). -->
+        <dependency>
+            <groupId>dev.ikm.tinkar</groupId>
+            <artifactId>data-ephemeral-provider</artifactId>
+            <version>${tinkar.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>dev.ikm.tinkar</groupId>
+            <artifactId>entity-provider</artifactId>
+            <version>${tinkar.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>dev.ikm.tinkar</groupId>
+            <artifactId>executor-provider</artifactId>
+            <version>${tinkar.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>network.ike.tooling</groupId>
+                <artifactId>ike-maven-plugin</artifactId>
+                <!-- INTERIM: knowledge-export ships in 234 (ike-issues#824);
+                     pinned to the snapshot until the tooling release cascades. -->
+                <version>234-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <id>export-knowledge-changeset</id>
+                        <goals>
+                            <goal>knowledge-export</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
