@@ -70,8 +70,7 @@ public final class ConceptSet {
         RICH_SURFACE.concept("Journal element (RichSurfaceTerms)").at(inception)
                 .synonym("Journal element")
                 .definition("Root kind of the blocks a conversation journal orders.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(RICH_SURFACE_ROOT))));
+                .isA(RICH_SURFACE_ROOT);
 
         // The structural element kinds: one per element pattern. A block's structural
         // kind is carried by which element pattern its semantic uses; these concepts
@@ -80,30 +79,26 @@ public final class ConceptSet {
                 .synonym("Prose element")
                 .definition("An embedded prose block: the journal owns the content, carried"
                         + " as text on the prose element pattern.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(RichSurface.JOURNAL_ELEMENT))));
+                .isA(RichSurface.JOURNAL_ELEMENT);
 
         RICH_SURFACE.concept("Component-list element (RichSurfaceTerms)").at(inception)
                 .synonym("Component-list element")
                 .definition("An embedded ad-hoc component list: the journal owns the"
                         + " membership, carried as an ordered component-id list on the"
                         + " component-list element pattern.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(RichSurface.JOURNAL_ELEMENT))));
+                .isA(RichSurface.JOURNAL_ELEMENT);
 
         RICH_SURFACE.concept("Reference element (RichSurfaceTerms)").at(inception)
                 .synonym("Reference element")
                 .definition("A block over live knowledge: holds a component reference to an"
                         + " existing chronology and resolves latest-on-coordinate —"
                         + " reference, never copy.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(RichSurface.JOURNAL_ELEMENT))));
+                .isA(RichSurface.JOURNAL_ELEMENT);
 
         RICH_SURFACE.concept("Tombstone element (RichSurfaceTerms)").at(inception)
                 .synonym("Tombstone element")
                 .definition("A documented absence: how an excised element renders, so replay"
                         + " degrades from re-executable to verifiable rather than breaking.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(RichSurface.JOURNAL_ELEMENT))));
+                .isA(RichSurface.JOURNAL_ELEMENT);
     }
 }

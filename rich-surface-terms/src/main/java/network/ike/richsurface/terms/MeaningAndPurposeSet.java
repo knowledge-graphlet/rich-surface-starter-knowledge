@@ -54,8 +54,7 @@ public final class MeaningAndPurposeSet {
                 .definition("What a manifest semantic means: the ordered membership of one"
                         + " conversation journal. Inserting or reordering a block writes a"
                         + " new manifest version; replay walks manifest versions in time.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(RICH_SURFACE_ROOT))));
+                .isA(RICH_SURFACE_ROOT);
 
         // ---- Field meanings (property keys) ----------------------------------
         // Each is the knowledge-level address of one field: unique within its
@@ -65,29 +64,25 @@ public final class MeaningAndPurposeSet {
                 .synonym("Journal elements")
                 .definition("The ordered elements of one conversation journal — the manifest"
                         + " pattern's single field.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(RICH_SURFACE_ROOT))));
+                .isA(RICH_SURFACE_ROOT);
 
         RICH_SURFACE.concept("Prose content (RichSurfaceTerms)").at(inception)
                 .synonym("Prose content")
                 .definition("A prose block's text: markdown whose inline concept references"
                         + " are id-bearing k: tokens — the interchange form.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(RICH_SURFACE_ROOT))));
+                .isA(RICH_SURFACE_ROOT);
 
         RICH_SURFACE.concept("Listed components (RichSurfaceTerms)").at(inception)
                 .synonym("Listed components")
                 .definition("The members of an embedded component-list block, in order.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(RICH_SURFACE_ROOT))));
+                .isA(RICH_SURFACE_ROOT);
 
         RICH_SURFACE.concept("Referenced chronology (RichSurfaceTerms)").at(inception)
                 .synonym("Referenced chronology")
                 .definition("The live knowledge a reference block resolves — reference,"
                         + " never copy: reading resolves latest-on-coordinate; updating"
                         + " writes a new version of the referenced chronology.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(RICH_SURFACE_ROOT))));
+                .isA(RICH_SURFACE_ROOT);
 
         // ---- Purposes ---------------------------------------------------------
         // Shared across patterns where the purpose genuinely matches — shared
@@ -97,14 +92,12 @@ public final class MeaningAndPurposeSet {
                 .synonym("Element order")
                 .definition("Ordering a conversation's elements: the purpose of the journal"
                         + " manifest and its field.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(RICH_SURFACE_ROOT))));
+                .isA(RICH_SURFACE_ROOT);
 
         RICH_SURFACE.concept("Element content (RichSurfaceTerms)").at(inception)
                 .synonym("Element content")
                 .definition("Carrying an element's content: the purpose shared by the"
                         + " element patterns and their fields.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(RICH_SURFACE_ROOT))));
+                .isA(RICH_SURFACE_ROOT);
     }
 }
