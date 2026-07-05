@@ -13,7 +13,7 @@
 
     <groupId>network.ike.komet</groupId>
     <artifactId>rich-surface-starter-knowledge</artifactId>
-    <version>1-SNAPSHOT</version>
+    <version>1-chronology-builder-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Rich Surface Starter Knowledge</name>
