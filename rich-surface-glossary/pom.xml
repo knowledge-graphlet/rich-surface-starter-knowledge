@@ -14,32 +14,21 @@
 
     <name>Rich Surface Glossary Generator</name>
     <description>
-        The doc projection of the RichSurface knowledge set: generates an AsciiDoc
-        glossary — a Koncept (LifeHash identicon + name) and definition for every
-        concept and pattern — from the ledger, for inclusion in the guide. Sits
-        beside the code projection (rich-surface-bindings) and the KB projection
+        The doc projection of the RichSurface knowledge set: generates the koncept
+        definitions YAML and a Content Inventory fragment of standard k: Koncept chips
+        from the ledger, for the koncept-asciidoc-extension to render. Sits beside the
+        code projection (rich-surface-bindings) and the KB projection
         (rich-surface-changeset).
     </description>
 
-    <properties>
-        <toucan.version>0.9.0</toucan.version>
-    </properties>
-
     <dependencies>
-        <!-- The ledger: provides the KnowledgeSetSource and the declarations read API. -->
+        <!-- The ledger: provides the KnowledgeSetSource and the declarations read API.
+             The identicons and glossary are rendered by the koncept-asciidoc-extension
+             at doc build time, so this generator needs no identicon library. -->
         <dependency>
             <groupId>network.ike.komet</groupId>
             <artifactId>rich-surface-terms</artifactId>
             <version>${project.version}</version>
-        </dependency>
-
-        <!-- LifeHash identicon generator (non-JavaFX AWT) — the same library and
-             algorithm version Komet's identicon uses, so a concept's Koncept looks
-             identical across the guide, Komet, and the Zulip/email adapters. -->
-        <dependency>
-            <groupId>com.sparrowwallet</groupId>
-            <artifactId>toucan</artifactId>
-            <version>${toucan.version}</version>
         </dependency>
     </dependencies>
 </project>

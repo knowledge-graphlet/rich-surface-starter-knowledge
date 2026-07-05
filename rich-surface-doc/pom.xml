@@ -22,13 +22,14 @@
     <properties>
         <pdf.source.document>rich-surface-guide</pdf.source.document>
         <exec-maven-plugin.version>3.5.0</exec-maven-plugin.version>
+        <koncept-asciidoc-extension.version>88</koncept-asciidoc-extension.version>
         <!-- Where the generated glossary lands and the guide's {generated} include
              root resolves; matches the .asciidoctorconfig value used for IDE preview. -->
         <generated.adoc.dir>${project.build.directory}/generated-sources/asciidoc</generated.adoc.dir>
     </properties>
 
     <dependencies>
-        <!-- The doc projection generator; brings the ledger and toucan transitively so
+        <!-- The doc projection generator; brings the ledger transitively so
              GlossaryGenerator runs on the exec classpath. Provided-scope: needed only
              to generate at build time, not a transitive dependency of this doc module. -->
         <dependency>
@@ -61,6 +62,7 @@
                                  only); the compile scope includes provided on the classpath. -->
                             <classpathScope>compile</classpathScope>
                             <arguments>
+                                <argument>${generated.adoc.dir}/rich-surface-koncepts.yml</argument>
                                 <argument>${generated.adoc.dir}/rich-surface-glossary.adoc</argument>
                             </arguments>
                         </configuration>
@@ -74,12 +76,24 @@
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
+                <!-- The standard Koncept chip: k: inline macro + auto-generated glossary,
+                     multi-backend, identicons byte-identical to Komet's. Registers via
+                     its ExtensionRegistry service simply by being on the plugin classpath. -->
+                <dependencies>
+                    <dependency>
+                        <groupId>network.ike.docs</groupId>
+                        <artifactId>koncept-asciidoc-extension</artifactId>
+                        <version>${koncept-asciidoc-extension.version}</version>
+                    </dependency>
+                </dependencies>
                 <configuration>
                     <attributes>
                         <!-- Resolve {generated} in the Maven build to the same location
                              .asciidoctorconfig gives the IDE, so the guide's include of
                              the generated glossary works in both. -->
                         <generated>${generated.adoc.dir}</generated>
+                        <!-- The generated koncept definitions the k: macros resolve against. -->
+                        <koncept-definitions-file>${generated.adoc.dir}/rich-surface-koncepts.yml</koncept-definitions-file>
                     </attributes>
                 </configuration>
             </plugin>

@@ -15,13 +15,12 @@
  */
 
 /**
- * The doc projection of the RichSurface knowledge set: generates an AsciiDoc glossary
- * (a Koncept identicon and definition per concept and pattern) from the ledger.
+ * The doc projection of the RichSurface knowledge set: generates the koncept
+ * definitions YAML and a Content Inventory fragment of standard {@code k:} Koncept
+ * chips from the ledger, for the koncept-asciidoc-extension to render.
  */
 module network.ike.richsurface.glossary {
     requires network.ike.richsurface.terms;
-    requires com.sparrowwallet.toucan;
-    requires java.desktop;
 
     exports network.ike.richsurface.glossary;
 }
