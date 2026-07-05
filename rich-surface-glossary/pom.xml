@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd">
+    <modelVersion>4.1.0</modelVersion>
+
+    <parent>
+        <groupId>network.ike.komet</groupId>
+        <artifactId>rich-surface-starter-knowledge</artifactId>
+    </parent>
+
+    <artifactId>rich-surface-glossary</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Rich Surface Glossary Generator</name>
+    <description>
+        The doc projection of the RichSurface knowledge set: generates an AsciiDoc
+        glossary — a Koncept (LifeHash identicon + name) and definition for every
+        concept and pattern — from the ledger, for inclusion in the guide. Sits
+        beside the code projection (rich-surface-bindings) and the KB projection
+        (rich-surface-changeset).
+    </description>
+
+    <properties>
+        <toucan.version>0.9.0</toucan.version>
+    </properties>
+
+    <dependencies>
+        <!-- The ledger: provides the KnowledgeSetSource and the declarations read API. -->
+        <dependency>
+            <groupId>network.ike.komet</groupId>
+            <artifactId>rich-surface-terms</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- LifeHash identicon generator (non-JavaFX AWT) — the same library and
+             algorithm version Komet's identicon uses, so a concept's Koncept looks
+             identical across the guide, Komet, and the Zulip/email adapters. -->
+        <dependency>
+            <groupId>com.sparrowwallet</groupId>
+            <artifactId>toucan</artifactId>
+            <version>${toucan.version}</version>
+        </dependency>
+    </dependencies>
+</project>

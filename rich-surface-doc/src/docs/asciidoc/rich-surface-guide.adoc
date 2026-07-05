@@ -54,9 +54,17 @@ file reads as history; the resolved current state is the draft report's job.
 
 The content this set realizes — element-kind taxonomy, property keys, the
 journal manifest and element patterns, module policies, and path classes — is
-enumerated wave by wave in the *RichSurfaceTerms Inventory*
+enumerated (in delivery waves) in the *RichSurfaceTerms Inventory*
 (`dev-rich-surface-terms-inventory`, Kompendium Part IV). Wave 1 is the journal
 chronology model of `IKE-Network/ike-issues#807`.
+
+The glossary below is *generated from the ledger* by `rich-surface-glossary` —
+the set's doc projection, beside the code projection (`rich-surface-bindings`)
+and the KB projection (`rich-surface-changeset`). Every concept and pattern
+appears as a Koncept: its LifeHash identicon — the same badge Komet shows —
+beside its fully qualified name, definition, and public identifier.
+
+include::{generated}/rich-surface-glossary.adoc[]
 
 == Building and Releasing
 

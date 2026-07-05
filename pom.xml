@@ -68,6 +68,7 @@
         <subproject>rich-surface-terms</subproject>
         <subproject>rich-surface-bindings</subproject>
         <subproject>rich-surface-changeset</subproject>
+        <subproject>rich-surface-glossary</subproject>
         <subproject>rich-surface-doc</subproject>
     </subprojects>
 </project>
