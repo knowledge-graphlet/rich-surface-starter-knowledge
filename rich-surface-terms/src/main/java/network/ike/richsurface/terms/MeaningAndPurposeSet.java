@@ -15,14 +15,20 @@
  */
 package network.ike.richsurface.terms;
 
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.Stamp;
+import dev.ikm.tinkar.terms.TinkarTerm;
+
+import static network.ike.richsurface.terms.RichSurface.RICH_SURFACE;
+import static network.ike.richsurface.terms.RichSurface.RICH_SURFACE_MODULE;
+import static network.ike.richsurface.terms.RichSurface.RICH_SURFACE_ROOT;
+
 /**
  * The meaning-and-purpose section of the RichSurfaceTerms ledger: the field vocabulary —
  * property-key concepts (field meanings) and purpose concepts — the patterns in
- * {@link PatternSet} wire to datatypes. Per the inventory
- * ({@code dev-rich-surface-terms-inventory}): journal elements, prose content, listed
- * components, referenced chronology, and the purposes they serve. Purposes are shared
- * deliberately across patterns where semantics genuinely match; field meanings are
- * unique within each pattern (the field's knowledge-level address).
+ * {@link PatternSet} wire to datatypes. Purposes are shared deliberately across patterns
+ * where semantics genuinely match; field meanings are unique within each pattern (the
+ * field's knowledge-level address).
  * <p>
  * Same ledger discipline as every section: time-major, inline stamps, append-only,
  * birth-FQN identity.
@@ -34,11 +40,71 @@ public final class MeaningAndPurposeSet {
 
     /**
      * Composes the field-vocabulary declarations into the knowledge-set session.
-     * Populated as the inventory's property keys are authored.
      */
     public static void compose() {
-        // Authoring proceeds per dev-rich-surface-terms-inventory: property keys
-        // (journal elements, prose content, listed components, referenced chronology)
-        // and their purposes.
+
+        // ============================================================ 2026-07-03
+        ActiveStamp inception = Stamp.active("2026-07-03T00:00:00Z",
+                TinkarTerm.USER, RICH_SURFACE_MODULE, TinkarTerm.DEVELOPMENT_PATH);
+
+        // ---- Pattern meanings ------------------------------------------------
+
+        RICH_SURFACE.concept("Journal manifest (RichSurfaceTerms)").at(inception)
+                .synonym("Journal manifest")
+                .definition("What a manifest semantic means: the ordered membership of one"
+                        + " conversation journal. Inserting or reordering a block writes a"
+                        + " new manifest version; replay walks manifest versions in time.")
+                .statedAxioms(leb -> leb.NecessarySet(leb.And(
+                        leb.ConceptAxiom(RICH_SURFACE_ROOT))));
+
+        // ---- Field meanings (property keys) ----------------------------------
+        // Each is the knowledge-level address of one field: unique within its
+        // pattern, addressable via getFieldWithMeaning.
+
+        RICH_SURFACE.concept("Journal elements (RichSurfaceTerms)").at(inception)
+                .synonym("Journal elements")
+                .definition("The ordered elements of one conversation journal — the manifest"
+                        + " pattern's single field.")
+                .statedAxioms(leb -> leb.NecessarySet(leb.And(
+                        leb.ConceptAxiom(RICH_SURFACE_ROOT))));
+
+        RICH_SURFACE.concept("Prose content (RichSurfaceTerms)").at(inception)
+                .synonym("Prose content")
+                .definition("A prose block's text: markdown whose inline concept references"
+                        + " are id-bearing k: tokens — the interchange form.")
+                .statedAxioms(leb -> leb.NecessarySet(leb.And(
+                        leb.ConceptAxiom(RICH_SURFACE_ROOT))));
+
+        RICH_SURFACE.concept("Listed components (RichSurfaceTerms)").at(inception)
+                .synonym("Listed components")
+                .definition("The members of an embedded component-list block, in order.")
+                .statedAxioms(leb -> leb.NecessarySet(leb.And(
+                        leb.ConceptAxiom(RICH_SURFACE_ROOT))));
+
+        RICH_SURFACE.concept("Referenced chronology (RichSurfaceTerms)").at(inception)
+                .synonym("Referenced chronology")
+                .definition("The live knowledge a reference block resolves — reference,"
+                        + " never copy: reading resolves latest-on-coordinate; updating"
+                        + " writes a new version of the referenced chronology.")
+                .statedAxioms(leb -> leb.NecessarySet(leb.And(
+                        leb.ConceptAxiom(RICH_SURFACE_ROOT))));
+
+        // ---- Purposes ---------------------------------------------------------
+        // Shared across patterns where the purpose genuinely matches — shared
+        // purpose concepts are what make patterns queryable by purpose.
+
+        RICH_SURFACE.concept("Element order (RichSurfaceTerms)").at(inception)
+                .synonym("Element order")
+                .definition("Ordering a conversation's elements: the purpose of the journal"
+                        + " manifest and its field.")
+                .statedAxioms(leb -> leb.NecessarySet(leb.And(
+                        leb.ConceptAxiom(RICH_SURFACE_ROOT))));
+
+        RICH_SURFACE.concept("Element content (RichSurfaceTerms)").at(inception)
+                .synonym("Element content")
+                .definition("Carrying an element's content: the purpose shared by the"
+                        + " element patterns and their fields.")
+                .statedAxioms(leb -> leb.NecessarySet(leb.And(
+                        leb.ConceptAxiom(RICH_SURFACE_ROOT))));
     }
 }

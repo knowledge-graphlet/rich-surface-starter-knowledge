@@ -22,6 +22,8 @@ import dev.ikm.tinkar.common.service.ServiceProperties;
 import dev.ikm.tinkar.entity.ConceptEntity;
 import dev.ikm.tinkar.entity.Entity;
 import dev.ikm.tinkar.entity.EntityHandle;
+import dev.ikm.tinkar.entity.PatternEntity;
+import dev.ikm.tinkar.entity.PatternEntityVersion;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.StampEntity;
 import dev.ikm.tinkar.entity.builder.Stamp;
@@ -94,6 +96,47 @@ class LedgerReplayTest {
         int[] descriptions = EntityService.get().semanticNidsForComponentOfPattern(
                 module.nid(), TinkarTerm.DESCRIPTION_PATTERN.nid());
         assertEquals(3, descriptions.length, "FQN + synonym + definition");
+    }
+
+    @Test
+    @DisplayName("Wave-1 patterns replay: manifest + three element patterns, fields wired")
+    void patternsReplay() {
+        PatternEntity<?> manifest = EntityHandle.get(
+                RichSurface.RICH_SURFACE.patternRef("Journal manifest pattern (RichSurfaceTerms)").nid())
+                .expectPattern();
+        assertEquals(1, manifest.versions().size());
+        PatternEntityVersion manifestVersion = (PatternEntityVersion) manifest.versions().get(0);
+        assertEquals(RichSurface.JOURNAL_MANIFEST.nid(), manifestVersion.semanticMeaningNid());
+        assertEquals(RichSurface.ELEMENT_ORDER.nid(), manifestVersion.semanticPurposeNid());
+        assertEquals(1, manifestVersion.fieldDefinitions().size());
+        assertEquals(RichSurface.JOURNAL_ELEMENTS.nid(),
+                manifestVersion.fieldDefinitions().get(0).meaningNid());
+        assertEquals(TinkarTerm.COMPONENT_ID_LIST_FIELD.nid(),
+                manifestVersion.fieldDefinitions().get(0).dataTypeNid());
+
+        for (String fqn : new String[]{
+                "Prose element pattern (RichSurfaceTerms)",
+                "Component-list element pattern (RichSurfaceTerms)",
+                "Reference element pattern (RichSurfaceTerms)"}) {
+            PatternEntity<?> pattern = EntityHandle.get(
+                    RichSurface.RICH_SURFACE.patternRef(fqn).nid()).expectPattern();
+            PatternEntityVersion version = (PatternEntityVersion) pattern.versions().get(0);
+            assertEquals(RichSurface.ELEMENT_CONTENT.nid(), version.semanticPurposeNid(),
+                    "element patterns share the element-content purpose: " + fqn);
+            assertEquals(1, version.fieldDefinitions().size(), fqn);
+        }
+    }
+
+    @Test
+    @DisplayName("Element kinds classify under Journal element")
+    void elementKindsClassify() {
+        for (var kind : new dev.ikm.tinkar.terms.EntityProxy.Concept[]{
+                RichSurface.PROSE_ELEMENT, RichSurface.COMPONENT_LIST_ELEMENT,
+                RichSurface.REFERENCE_ELEMENT}) {
+            int[] axiomNids = EntityService.get().semanticNidsForComponentOfPattern(
+                    kind.nid(), TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid());
+            assertEquals(1, axiomNids.length, kind.description());
+        }
     }
 
     @Test

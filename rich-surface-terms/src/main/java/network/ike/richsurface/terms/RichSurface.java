@@ -57,4 +57,44 @@ public final class RichSurface {
     /** Root kind of the blocks a conversation journal orders. Declared in {@link ConceptSet}. */
     public static final EntityProxy.Concept JOURNAL_ELEMENT =
             RICH_SURFACE.conceptRef("Journal element (RichSurfaceTerms)");
+
+    /** Structural kind of the prose element pattern. Declared in {@link ConceptSet}. */
+    public static final EntityProxy.Concept PROSE_ELEMENT =
+            RICH_SURFACE.conceptRef("Prose element (RichSurfaceTerms)");
+
+    /** Structural kind of the component-list element pattern. Declared in {@link ConceptSet}. */
+    public static final EntityProxy.Concept COMPONENT_LIST_ELEMENT =
+            RICH_SURFACE.conceptRef("Component-list element (RichSurfaceTerms)");
+
+    /** Structural kind of the reference element pattern. Declared in {@link ConceptSet}. */
+    public static final EntityProxy.Concept REFERENCE_ELEMENT =
+            RICH_SURFACE.conceptRef("Reference element (RichSurfaceTerms)");
+
+    /** Meaning of the journal manifest pattern. Declared in {@link MeaningAndPurposeSet}. */
+    public static final EntityProxy.Concept JOURNAL_MANIFEST =
+            RICH_SURFACE.conceptRef("Journal manifest (RichSurfaceTerms)");
+
+    /** Field meaning: the ordered elements of one conversation. Declared in {@link MeaningAndPurposeSet}. */
+    public static final EntityProxy.Concept JOURNAL_ELEMENTS =
+            RICH_SURFACE.conceptRef("Journal elements (RichSurfaceTerms)");
+
+    /** Field meaning: a prose block's text. Declared in {@link MeaningAndPurposeSet}. */
+    public static final EntityProxy.Concept PROSE_CONTENT =
+            RICH_SURFACE.conceptRef("Prose content (RichSurfaceTerms)");
+
+    /** Field meaning: the members of an embedded component-list block. Declared in {@link MeaningAndPurposeSet}. */
+    public static final EntityProxy.Concept LISTED_COMPONENTS =
+            RICH_SURFACE.conceptRef("Listed components (RichSurfaceTerms)");
+
+    /** Field meaning: the live knowledge a reference block resolves. Declared in {@link MeaningAndPurposeSet}. */
+    public static final EntityProxy.Concept REFERENCED_CHRONOLOGY =
+            RICH_SURFACE.conceptRef("Referenced chronology (RichSurfaceTerms)");
+
+    /** Purpose: ordering a conversation's elements. Declared in {@link MeaningAndPurposeSet}. */
+    public static final EntityProxy.Concept ELEMENT_ORDER =
+            RICH_SURFACE.conceptRef("Element order (RichSurfaceTerms)");
+
+    /** Purpose: carrying an element's content. Declared in {@link MeaningAndPurposeSet}. */
+    public static final EntityProxy.Concept ELEMENT_CONTENT =
+            RICH_SURFACE.conceptRef("Element content (RichSurfaceTerms)");
 }
