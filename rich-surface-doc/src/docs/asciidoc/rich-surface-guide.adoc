@@ -50,21 +50,47 @@ by its birth FQN at any later point in the ledger and simply continues —
 nothing is restated — so the source composes as one continuous ledger. The
 file reads as history; the resolved current state is the draft report's job.
 
-== Content Inventory
+== What This Set Provides
 
-The content this set realizes — element-kind taxonomy, property keys, the
-journal manifest and element patterns, module policies, and path classes — is
-enumerated (in delivery waves) in the *RichSurfaceTerms Inventory*
-(`dev-rich-surface-terms-inventory`, Kompendium Part IV). Wave 1 is the journal
-chronology model of `IKE-Network/ike-issues#807`.
+This first release is the *journal chronology model* — the vocabulary the
+chronology-backed surface needs to exist at all (`IKE-Network/ike-issues#807`).
+It answers one question: what does it take to record a conversation as
+versioned knowledge rather than a transcript? The comprehensive per-concept
+reference — identicons, definitions, logical axioms, parents, children, and
+identifiers — is the *Referenced Koncepts* glossary at the end of this guide,
+generated from the ledger; this section is the orientation to it.
 
-The glossary below is *generated from the ledger* by `rich-surface-glossary` —
-the set's doc projection, beside the code projection (`rich-surface-bindings`)
-and the KB projection (`rich-surface-changeset`). Every concept and pattern
-appears as a Koncept: its LifeHash identicon — the same badge Komet shows —
-beside its fully qualified name, definition, and public identifier.
+Three groups of content, and why each is here:
 
-include::{generated}/rich-surface-glossary.adoc[]
+* *The element kinds* root at k:JournalElement[] and branch into
+  k:ProseElement[], k:ComponentListElement[], k:ReferenceElement[], and
+  k:TombstoneElement[]. A block's kind is not a field value — it *is* which
+  pattern the block's semantic uses, so these concepts exist to make the kinds
+  classifiable and navigable like any terminology. The reference kind is the
+  load-bearing one: a k:ReferenceElement[] holds live knowledge by reference,
+  never a copy, which is what lets a conversation edit the graph rather than
+  talk about it.
+
+* *The field vocabulary* — the meanings a pattern's fields carry
+  (k:JournalElements[], k:ProseContent[], k:ListedComponents[],
+  k:ReferencedChronology[]) and the purposes they serve (k:ElementOrder[],
+  k:ElementContent[]). Purposes are deliberately shared across patterns: when
+  two patterns genuinely order or carry content the same way, they cite the
+  same purpose concept, so the set stays queryable by purpose rather than
+  accreting near-duplicates.
+
+* *The patterns* wire that vocabulary to existing datatypes — the set mints no
+  datatype of its own. The k:JournalManifestPattern[] holds a conversation's
+  ordered elements as a component-id list, so inserting or reordering a block
+  writes a new manifest version and replay is walking those versions in time;
+  the element patterns each carry one block's content.
+
+How the set is used: a conversation is a journal-anchor concept; its manifest
+orders element semantics; each element either embeds its content or references
+a live chronology. Later waves add the role kinds, module policies, and path
+classes that turn the surface into a working sandbox — those are enumerated,
+in delivery order, in the *RichSurfaceTerms Inventory*
+(`dev-rich-surface-terms-inventory`, Kompendium Part IV).
 
 == Building and Releasing
 

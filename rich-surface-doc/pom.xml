@@ -22,9 +22,10 @@
     <properties>
         <pdf.source.document>rich-surface-guide</pdf.source.document>
         <exec-maven-plugin.version>3.5.0</exec-maven-plugin.version>
-        <koncept-asciidoc-extension.version>88</koncept-asciidoc-extension.version>
-        <!-- Where the generated glossary lands and the guide's {generated} include
-             root resolves; matches the .asciidoctorconfig value used for IDE preview. -->
+        <!-- INTERIM: the parents/children/identifiers glossary + koncept-glossary-all
+             ship in 90 (ike-issues#823); pinned to the snapshot until ike-docs releases. -->
+        <koncept-asciidoc-extension.version>90-SNAPSHOT</koncept-asciidoc-extension.version>
+        <!-- Where the generated koncepts.yml lands. -->
         <generated.adoc.dir>${project.build.directory}/generated-sources/asciidoc</generated.adoc.dir>
     </properties>
 
@@ -63,7 +64,6 @@
                             <classpathScope>compile</classpathScope>
                             <arguments>
                                 <argument>${generated.adoc.dir}/rich-surface-koncepts.yml</argument>
-                                <argument>${generated.adoc.dir}/rich-surface-glossary.adoc</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -88,12 +88,11 @@
                 </dependencies>
                 <configuration>
                     <attributes>
-                        <!-- Resolve {generated} in the Maven build to the same location
-                             .asciidoctorconfig gives the IDE, so the guide's include of
-                             the generated glossary works in both. -->
-                        <generated>${generated.adoc.dir}</generated>
                         <!-- The generated koncept definitions the k: macros resolve against. -->
                         <koncept-definitions-file>${generated.adoc.dir}/rich-surface-koncepts.yml</koncept-definitions-file>
+                        <!-- Comprehensive standard glossary: list every concept and pattern
+                             in the set, not only those referenced in the prose. -->
+                        <koncept-glossary-all/>
                     </attributes>
                 </configuration>
             </plugin>
