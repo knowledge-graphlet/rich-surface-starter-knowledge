@@ -15,27 +15,27 @@
     <name>Rich Surface Starter Knowledge — Guide</name>
     <description>
         Documentation for the RichSurfaceTerms starter knowledge: the ledger model,
-        the content inventory it realizes, and how the change-set artifacts are
-        built, reviewed, and released.
+        the content it realizes, and how the artifacts are built, reviewed, and released.
+        The comprehensive Koncept glossary is rendered by the koncept-asciidoc-extension
+        from the koncepts.yml the change-set module extracts from the loaded store.
     </description>
 
     <properties>
         <pdf.source.document>rich-surface-guide</pdf.source.document>
-        <exec-maven-plugin.version>3.5.0</exec-maven-plugin.version>
         <!-- INTERIM: the parents/children/identifiers glossary + koncept-glossary-all
              ship in 90 (ike-issues#823); pinned to the snapshot until ike-docs releases. -->
         <koncept-asciidoc-extension.version>90-SNAPSHOT</koncept-asciidoc-extension.version>
-        <!-- Where the generated koncepts.yml lands. -->
-        <generated.adoc.dir>${project.build.directory}/generated-sources/asciidoc</generated.adoc.dir>
+        <!-- The koncepts.yml the change-set module extracts from the loaded knowledge
+             base (a sibling module in this reactor; it builds first, being a dependency). -->
+        <koncepts.yml>${project.basedir}/../rich-surface-changeset/target/rich-surface-koncepts.yml</koncepts.yml>
     </properties>
 
     <dependencies>
-        <!-- The doc projection generator; brings the ledger transitively so
-             GlossaryGenerator runs on the exec classpath. Provided-scope: needed only
-             to generate at build time, not a transitive dependency of this doc module. -->
+        <!-- Build-order only: the change-set module extracts the koncepts.yml this guide
+             renders, so it must build first. -->
         <dependency>
             <groupId>network.ike.komet</groupId>
-            <artifactId>rich-surface-glossary</artifactId>
+            <artifactId>rich-surface-changeset</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
@@ -43,32 +43,6 @@
 
     <build>
         <plugins>
-            <!-- Doc projection: generate the Koncept glossary from the ledger into the
-                 {generated} include root before AsciiDoc processing. Runs GlossaryGenerator
-                 (a Java main, not a shell command) in-process over the runtime classpath. -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>${exec-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>generate-koncept-glossary</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                        <configuration>
-                            <mainClass>network.ike.richsurface.glossary.GlossaryGenerator</mainClass>
-                            <!-- The generator is a provided-scope dependency (build-time
-                                 only); the compile scope includes provided on the classpath. -->
-                            <classpathScope>compile</classpathScope>
-                            <arguments>
-                                <argument>${generated.adoc.dir}/rich-surface-koncepts.yml</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -76,9 +50,8 @@
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
-                <!-- The standard Koncept chip: k: inline macro + auto-generated glossary,
-                     multi-backend, identicons byte-identical to Komet's. Registers via
-                     its ExtensionRegistry service simply by being on the plugin classpath. -->
+                <!-- The standard Koncept chip: k: inline macro + comprehensive glossary,
+                     multi-backend, identicons byte-identical to Komet's. -->
                 <dependencies>
                     <dependency>
                         <groupId>network.ike.docs</groupId>
@@ -88,8 +61,8 @@
                 </dependencies>
                 <configuration>
                     <attributes>
-                        <!-- The generated koncept definitions the k: macros resolve against. -->
-                        <koncept-definitions-file>${generated.adoc.dir}/rich-surface-koncepts.yml</koncept-definitions-file>
+                        <!-- The koncept definitions extracted from the knowledge base. -->
+                        <koncept-definitions-file>${koncepts.yml}</koncept-definitions-file>
                         <!-- Comprehensive standard glossary: list every concept and pattern
                              in the set, not only those referenced in the prose. -->
                         <koncept-glossary-all/>

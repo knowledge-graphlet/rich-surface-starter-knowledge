@@ -66,6 +66,11 @@
                         <goals>
                             <goal>knowledge-export</goal>
                         </goals>
+                        <configuration>
+                            <!-- Extract the glossary koncepts.yml from the same loaded
+                                 store — one materialization, both artifacts. -->
+                            <konceptsYmlFile>${project.build.directory}/rich-surface-koncepts.yml</konceptsYmlFile>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
