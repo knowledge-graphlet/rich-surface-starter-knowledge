@@ -90,6 +90,14 @@ public final class RichSurface {
     public static final EntityProxy.Concept REFERENCED_CHRONOLOGY =
             RICH_SURFACE.conceptRef("Referenced chronology (RichSurfaceTerms)");
 
+    /**
+     * The set's purpose sub-root: the class of purposes this set declares, under both the
+     * set root and the global {@code TinkarTerm.PURPOSE} classification. Declared in
+     * {@link MeaningAndPurposeSet} (IKE-Network/ike-issues#846).
+     */
+    public static final EntityProxy.Concept RICH_SURFACE_PURPOSE =
+            RICH_SURFACE.conceptRef("Rich surface purpose (RichSurfaceTerms)");
+
     /** Purpose: ordering a conversation's elements. Declared in {@link MeaningAndPurposeSet}. */
     public static final EntityProxy.Concept ELEMENT_ORDER =
             RICH_SURFACE.conceptRef("Element order (RichSurfaceTerms)");

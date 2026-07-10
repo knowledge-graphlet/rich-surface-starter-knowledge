@@ -140,6 +140,25 @@ class LedgerReplayTest {
     }
 
     @Test
+    @DisplayName("Purposes classify under the purpose sub-root, which is dual-parented (#846)")
+    void purposesClassifyUnderPurposeSubRoot() {
+        // The sub-root itself: one stated-axiom semantic, dual-parent
+        // (set root + TinkarTerm.PURPOSE).
+        int[] subRootAxioms = EntityService.get().semanticNidsForComponentOfPattern(
+                RichSurface.RICH_SURFACE_PURPOSE.nid(),
+                TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid());
+        assertEquals(1, subRootAxioms.length);
+
+        // Each purpose classifies under the sub-root.
+        for (var purpose : new dev.ikm.tinkar.terms.EntityProxy.Concept[]{
+                RichSurface.ELEMENT_ORDER, RichSurface.ELEMENT_CONTENT}) {
+            int[] axiomNids = EntityService.get().semanticNidsForComponentOfPattern(
+                    purpose.nid(), TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid());
+            assertEquals(1, axiomNids.length, purpose.description());
+        }
+    }
+
+    @Test
     @DisplayName("Journal element classifies under the RichSurfaceTerms root")
     void journalElementAxioms() {
         int[] axiomNids = EntityService.get().semanticNidsForComponentOfPattern(

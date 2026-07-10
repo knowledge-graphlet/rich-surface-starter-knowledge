@@ -86,18 +86,29 @@ public final class MeaningAndPurposeSet {
 
         // ---- Purposes ---------------------------------------------------------
         // Shared across patterns where the purpose genuinely matches — shared
-        // purpose concepts are what make patterns queryable by purpose.
+        // purpose concepts are what make patterns queryable by purpose. The
+        // purpose sub-root classifies them under TinkarTerm.PURPOSE as well as
+        // the set root (#844 phase 2: purpose classifies; module/path enforce),
+        // so a purpose predicate can select by classification, not enumeration.
+
+        RICH_SURFACE.concept("Rich surface purpose (RichSurfaceTerms)").at(inception)
+                .synonym("Rich surface purpose")
+                .definition("The class of purposes the rich-surface knowledge set declares:"
+                        + " a permitted, complementary classification key read at boundaries"
+                        + " (filtering, navigation) — never an enforcement carrier, which"
+                        + " stays with module and path.")
+                .isA(RICH_SURFACE_ROOT, TinkarTerm.PURPOSE);
 
         RICH_SURFACE.concept("Element order (RichSurfaceTerms)").at(inception)
                 .synonym("Element order")
                 .definition("Ordering a conversation's elements: the purpose of the journal"
                         + " manifest and its field.")
-                .isA(RICH_SURFACE_ROOT);
+                .isA(RichSurface.RICH_SURFACE_PURPOSE);
 
         RICH_SURFACE.concept("Element content (RichSurfaceTerms)").at(inception)
                 .synonym("Element content")
                 .definition("Carrying an element's content: the purpose shared by the"
                         + " element patterns and their fields.")
-                .isA(RICH_SURFACE_ROOT);
+                .isA(RichSurface.RICH_SURFACE_PURPOSE);
     }
 }
