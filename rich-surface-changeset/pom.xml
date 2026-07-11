@@ -29,25 +29,13 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Replay needs a store: providers at runtime scope; their classpath
-             ServiceLoader registrations live in this module's META-INF/services
-             (tinkar providers declare services in module-info only). -->
+        <!-- The knowledge-pipeline implementation: resolved by ServiceLoader inside
+             the goal's forked seam. Brings the store providers and their classpath
+             service registrations transitively. -->
         <dependency>
-            <groupId>dev.ikm.tinkar</groupId>
-            <artifactId>data-ephemeral-provider</artifactId>
-            <version>${tinkar.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>dev.ikm.tinkar</groupId>
-            <artifactId>entity-provider</artifactId>
-            <version>${tinkar.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>dev.ikm.tinkar</groupId>
-            <artifactId>executor-provider</artifactId>
-            <version>${tinkar.version}</version>
+            <groupId>network.ike.knowledge</groupId>
+            <artifactId>ike-knowledge-provider</artifactId>
+            <version>1-chronology-builder-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
     </dependencies>
@@ -57,9 +45,9 @@
             <plugin>
                 <groupId>network.ike.tooling</groupId>
                 <artifactId>ike-maven-plugin</artifactId>
-                <!-- INTERIM: knowledge-export ships in 234 (ike-issues#824);
-                     pinned to the snapshot until the tooling release cascades. -->
-                <version>234-SNAPSHOT</version>
+                <!-- INTERIM: the SPI-based knowledge-export ships in 235
+                     (ike-issues#850/#856); pinned until the tooling release cascades. -->
+                <version>235-SNAPSHOT</version>
                 <executions>
                     <execution>
                         <id>export-knowledge-changeset</id>
