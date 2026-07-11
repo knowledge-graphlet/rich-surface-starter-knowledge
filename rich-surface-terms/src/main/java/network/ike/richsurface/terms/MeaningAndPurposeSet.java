@@ -24,7 +24,7 @@ import static network.ike.richsurface.terms.RichSurface.RICH_SURFACE_MODULE;
 import static network.ike.richsurface.terms.RichSurface.RICH_SURFACE_ROOT;
 
 /**
- * The meaning-and-purpose section of the RichSurfaceTerms ledger: the field vocabulary —
+ * The meaning-and-purpose section of the RichSurfaceTerms ledger: the field terminology —
  * property-key concepts (field meanings) and purpose concepts — the patterns in
  * {@link PatternSet} wire to datatypes. Purposes are shared deliberately across patterns
  * where semantics genuinely match; field meanings are unique within each pattern (the
@@ -39,7 +39,7 @@ public final class MeaningAndPurposeSet {
     }
 
     /**
-     * Composes the field-vocabulary declarations into the knowledge-set session.
+     * Composes the field-terminology declarations into the knowledge-set session.
      */
     public static void compose() {
 

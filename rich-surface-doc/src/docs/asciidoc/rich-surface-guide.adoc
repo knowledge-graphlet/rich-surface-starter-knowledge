@@ -52,7 +52,7 @@ file reads as history; the resolved current state is the draft report's job.
 
 == What This Set Provides
 
-This first release is the *journal chronology model* — the vocabulary the
+This first release is the *journal chronology model* — the terminology the
 chronology-backed surface needs to exist at all (`IKE-Network/ike-issues#807`).
 It answers one question: what does it take to record a conversation as
 versioned knowledge rather than a transcript? The comprehensive per-concept
@@ -71,7 +71,7 @@ Three groups of content, and why each is here:
   never a copy, which is what lets a conversation edit the graph rather than
   talk about it.
 
-* *The field vocabulary* — the meanings a pattern's fields carry
+* *The field terminology* — the meanings a pattern's fields carry
   (k:JournalElements[], k:ProseContent[], k:ListedComponents[],
   k:ReferencedChronology[]) and the purposes they serve (k:ElementOrder[],
   k:ElementContent[]). Purposes are deliberately shared across patterns: when
@@ -79,7 +79,7 @@ Three groups of content, and why each is here:
   same purpose concept, so the set stays queryable by purpose rather than
   accreting near-duplicates.
 
-* *The patterns* wire that vocabulary to existing datatypes — the set mints no
+* *The patterns* wire that terminology to existing datatypes — the set mints no
   datatype of its own. The k:JournalManifestPattern[] holds a conversation's
   ordered elements as a component-id list, so inserting or reordering a block
   writes a new manifest version and replay is walking those versions in time;

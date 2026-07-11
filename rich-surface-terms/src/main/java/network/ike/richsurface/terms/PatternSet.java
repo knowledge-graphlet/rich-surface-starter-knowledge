@@ -35,7 +35,7 @@ import static network.ike.richsurface.terms.RichSurface.RICH_SURFACE_MODULE;
 /**
  * The pattern section of the RichSurfaceTerms ledger: the journal manifest and element
  * patterns of the chronology model ({@code IKE-Network/ike-issues#807}), wiring the
- * {@link MeaningAndPurposeSet} vocabulary to existing datatype concepts — Component id
+ * {@link MeaningAndPurposeSet} terminology to existing datatype concepts — Component id
  * list, String, and Component; the set mints no datatypes.
  * <p>
  * Same ledger discipline as every section: time-major, inline stamps, append-only,
