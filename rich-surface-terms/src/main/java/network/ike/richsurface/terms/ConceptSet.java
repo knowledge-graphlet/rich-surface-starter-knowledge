@@ -56,16 +56,21 @@ public final class ConceptSet {
 
         // The module concept every stamp in this set cites — including its own
         // versions' stamps; self-reference is well-defined under derived identity.
+        // Both anchor into the base (Tinkar starter set) taxonomy so a KB that
+        // loads base + this set navigates to it from the root — no orphan forest.
+        // MODEL_CONCEPT as the root's anchor is provisional; revisable pre-release.
         RICH_SURFACE.concept("RichSurfaceTerms module (RichSurfaceTerms)").at(inception)
                 .synonym("RichSurfaceTerms module")
                 .definition("The tinkar module scoping every stamp of the RichSurfaceTerms"
                         + " content set; the export dimension for this knowledge, in whole"
-                        + " or in part.");
+                        + " or in part.")
+                .isA(TinkarTerm.MODULE);
 
         RICH_SURFACE.concept("RichSurfaceTerms root (RichSurfaceTerms)").at(inception)
                 .synonym("RichSurfaceTerms root")
                 .definition("Root concept of the RichSurfaceTerms starter knowledge for"
-                        + " the chronology-backed rich interaction surface.");
+                        + " the chronology-backed rich interaction surface.")
+                .isA(TinkarTerm.MODEL_CONCEPT);
 
         RICH_SURFACE.concept("Journal element (RichSurfaceTerms)").at(inception)
                 .synonym("Journal element")
