@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd">
+    <modelVersion>4.1.0</modelVersion>
+
+    <parent>
+        <groupId>network.ike.komet</groupId>
+        <artifactId>rich-surface-starter-knowledge</artifactId>
+    </parent>
+
+    <artifactId>rich-surface-kb</artifactId>
+    <packaging>pom</packaging>
+
+    <name>Rich Surface Knowledge Base</name>
+    <description>
+        The full-cycle knowledge base: the base starter data plus this set's change
+        set, assembled and classified by ike:kb-assemble and installed into the
+        data-source directory for verification in Komet. Edits made during
+        verification are captured by the browser as change sets under the installed
+        store's changeSets directory and feed the next iteration as CHANGESET file
+        inputs below.
+    </description>
+
+    <dependencies>
+        <!-- The knowledge-pipeline implementation, resolved by ServiceLoader inside
+             the goal's forked seam. -->
+        <dependency>
+            <groupId>network.ike.knowledge</groupId>
+            <artifactId>ike-knowledge-provider</artifactId>
+            <version>1-chronology-builder-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- Build-order only: the change set below must exist before assembly. -->
+        <dependency>
+            <groupId>network.ike.komet</groupId>
+            <artifactId>rich-surface-changeset</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>network.ike.tooling</groupId>
+                <artifactId>ike-maven-plugin</artifactId>
+                <!-- INTERIM: kb-assemble ships in 235 (ike-issues#848/#850);
+                     pinned until the tooling release cascades. -->
+                <version>235-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <id>assemble-knowledge-base</id>
+                        <goals>
+                            <goal>kb-assemble</goal>
+                        </goals>
+                        <configuration>
+                            <inputs>
+                                <input>PB dev.ikm.data.tinkar:tinkar-starter-data:zip:reasoned-pb:20251009</input>
+                                <input>CHANGESET ${project.basedir}/../rich-surface-changeset/target/rich-surface-changeset-${project.version}-changeset.zip</input>
+                                <!-- Next iteration: change sets captured during Komet
+                                     verification load on top, e.g.
+                                <input>CHANGESET ${user.home}/Solor/rich-surface-kb/changeSets/User_yyyyMMdd_HHmmss_ike-cs.zip</input>
+                                -->
+                            </inputs>
+                            <installDirectory>${user.home}/Solor/rich-surface-kb</installDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

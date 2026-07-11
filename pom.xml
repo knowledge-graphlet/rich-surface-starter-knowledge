@@ -69,5 +69,6 @@
         <subproject>rich-surface-bindings</subproject>
         <subproject>rich-surface-changeset</subproject>
         <subproject>rich-surface-doc</subproject>
+        <subproject>rich-surface-kb</subproject>
     </subprojects>
 </project>
