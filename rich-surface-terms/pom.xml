@@ -26,6 +26,14 @@
             <artifactId>entity</artifactId>
             <version>${tinkar.version}</version>
         </dependency>
+        <!-- The IKE foundation this domain set composes on top of (its external
+             dependency): RichSurfaceSource writes IkeSource so rich-surface's references
+             resolve within its closure (IKE-Network/ike-issues#937). -->
+        <dependency>
+            <groupId>network.ike.foundation</groupId>
+            <artifactId>ike-terms</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <!-- Replay verification over an ephemeral store -->
         <dependency>

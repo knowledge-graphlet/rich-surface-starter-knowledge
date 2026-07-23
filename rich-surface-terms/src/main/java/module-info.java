@@ -20,6 +20,8 @@
  */
 module network.ike.richsurface.terms {
     requires transitive dev.ikm.tinkar.entity;
+    // The IKE foundation this domain set composes on top of (ike-issues#937).
+    requires network.ike.foundation.ike.terms;
 
     exports network.ike.richsurface.terms;
 

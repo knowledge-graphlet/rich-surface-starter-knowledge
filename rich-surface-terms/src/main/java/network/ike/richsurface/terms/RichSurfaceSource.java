@@ -17,6 +17,7 @@ package network.ike.richsurface.terms;
 
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.entity.builder.KnowledgeSetSource;
+import network.ike.foundation.ike.terms.IkeSource;
 
 /**
  * The {@link KnowledgeSetSource} this ledger module provides: composes every functional
@@ -41,6 +42,11 @@ public final class RichSurfaceSource implements KnowledgeSetSource {
      */
     @Override
     public KnowledgeSet compose() {
+        // Compose AND write the IKE foundation into the shared store first, so this
+        // domain set's references to foundation components resolve within its closure
+        // (IKE-Network/ike-issues#937). compose() alone only builds Ike.SET; write()
+        // materializes it into the store this set is being replayed into.
+        new IkeSource().compose().write();
         MeaningAndPurposeSet.compose();
         ConceptSet.compose();
         PatternSet.compose();
