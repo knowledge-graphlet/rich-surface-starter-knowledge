@@ -28,6 +28,7 @@ import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.StampEntity;
 import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.State;
+import network.ike.foundation.ike.terms.IkeSource;
 import dev.ikm.tinkar.terms.TinkarTerm;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -56,6 +57,12 @@ class LedgerReplayTest {
                         .resolve("target").resolve("LedgerReplayTest").resolve("datastore").toFile());
         PrimitiveData.selectControllerByName("Load Ephemeral Store");
         PrimitiveData.start();
+        // The declared external dependency, supplied first: this set's references to
+        // foundation components resolve within its closure only when the foundation is
+        // present in the store (IKE-Network/ike-issues#937). The consumer does the same at
+        // load time; RichSurfaceSource itself must not compose it, or the exported change
+        // set would absorb the foundation rather than remain a delta atop it.
+        new IkeSource().compose().write();
         new RichSurfaceSource().compose().write();
         RichSurface.RICH_SURFACE.write(); // idempotence: same identities, stamps, versions
     }

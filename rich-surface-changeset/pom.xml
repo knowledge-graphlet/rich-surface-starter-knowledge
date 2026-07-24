@@ -58,6 +58,12 @@
                             <!-- Extract the glossary koncepts.yml from the same loaded
                                  store — one materialization, both artifacts. -->
                             <konceptsYmlFile>${project.build.directory}/rich-surface-koncepts.yml</konceptsYmlFile>
+                            <!-- Two KnowledgeSetSource implementations are on the classpath
+                                 by design: this set's own, and IkeSource from the declared
+                                 external dependency ike-terms (IKE-Network/ike-issues#937).
+                                 Name the domain source so the forked seam selects the delta,
+                                 not the foundation. -->
+                            <sourceClass>network.ike.richsurface.terms.RichSurfaceSource</sourceClass>
                         </configuration>
                     </execution>
                 </executions>

@@ -61,6 +61,11 @@
                         <configuration>
                             <packageName>network.ike.richsurface.bindings</packageName>
                             <className>RichSurfaceTerms</className>
+                            <!-- Two KnowledgeSetSource implementations are on the classpath
+                                 by design: this set's own, and IkeSource from the declared
+                                 external dependency ike-terms (IKE-Network/ike-issues#937).
+                                 Name the domain source so discovery stays deterministic. -->
+                            <sourceClass>network.ike.richsurface.terms.RichSurfaceSource</sourceClass>
                         </configuration>
                     </execution>
                 </executions>
