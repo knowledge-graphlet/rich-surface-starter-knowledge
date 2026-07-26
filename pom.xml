@@ -57,11 +57,11 @@
     </distributionManagement>
 
     <properties>
-        <!-- INTERIM: the chronology-builder authoring tier (ike-issues#822) lives on
-             the ike-komet-wsr꞉chronology-builder sibling; this version resolves only
-             from a local .m2 where that sibling has been installed. Flips to the
-             main-line tinkar version when the feature merges. -->
-        <tinkar.version>1.127.2-chronology-builder-SNAPSHOT</tinkar.version>
+        <!-- The chronology-builder authoring tier (ike-issues#822) landed on
+             tinkar-core main with the chronology-builder substrate
+             (ike-issues#867); main-line SNAPSHOT until the release cascades. -->
+        <tinkar.version>1.127.2-SNAPSHOT</tinkar.version>
+        <ike-knowledge-provider.version>1-SNAPSHOT</ike-knowledge-provider.version>
     </properties>
 
     <subprojects>
