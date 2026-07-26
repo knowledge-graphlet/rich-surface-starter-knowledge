@@ -45,7 +45,7 @@
             <plugin>
                 <groupId>network.ike.tooling</groupId>
                 <artifactId>ike-maven-plugin</artifactId>
-                <version>235-SNAPSHOT</version>
+                <version>237</version>
                 <executions>
                     <execution>
                         <id>export-knowledge-changeset</id>
