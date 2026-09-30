@@ -62,6 +62,9 @@
              (ike-issues#867); main-line SNAPSHOT until the release cascades. -->
         <tinkar.version>1.127.2-SNAPSHOT</tinkar.version>
         <ike-knowledge-provider.version>1-SNAPSHOT</ike-knowledge-provider.version>
+        <!-- starter-data-ws builds on JDK 27, and preview features compile only for the
+             matching release, so this member targets Java 27 with the starter set. -->
+        <java.version>27</java.version>
     </properties>
 
     <subprojects>
