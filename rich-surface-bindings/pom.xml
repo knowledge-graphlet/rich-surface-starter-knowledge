@@ -39,7 +39,6 @@
         <dependency>
             <groupId>network.ike.komet</groupId>
             <artifactId>rich-surface-terms</artifactId>
-            <version>${project.version}</version>
             <optional>true</optional>
         </dependency>
 
