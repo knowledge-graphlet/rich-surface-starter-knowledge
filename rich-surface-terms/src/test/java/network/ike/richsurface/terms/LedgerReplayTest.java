@@ -93,9 +93,9 @@ class LedgerReplayTest {
                 Entity.getStamp(module.versions().get(0).stampNid()).moduleNid(),
                 "the module concept's own versions cite the module — well-defined under derived identity");
 
-        int[] descriptions = EntityService.get().semanticNidsForComponentOfPattern(
-                module.nid(), TinkarTerm.DESCRIPTION_PATTERN.nid());
-        assertEquals(3, descriptions.length, "FQN + synonym + definition");
+        long descriptions = EntityService.get().semanticsForComponentOfPattern(
+                module.nid(), TinkarTerm.DESCRIPTION_PATTERN.nid()).count();
+        assertEquals(3, descriptions, "FQN + synonym + definition");
     }
 
     @Test
@@ -133,18 +133,18 @@ class LedgerReplayTest {
         for (var kind : new dev.ikm.tinkar.terms.EntityProxy.Concept[]{
                 RichSurface.PROSE_ELEMENT, RichSurface.COMPONENT_LIST_ELEMENT,
                 RichSurface.REFERENCE_ELEMENT}) {
-            int[] axiomNids = EntityService.get().semanticNidsForComponentOfPattern(
-                    kind.nid(), TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid());
-            assertEquals(1, axiomNids.length, kind.description());
+            long axioms = EntityService.get().semanticsForComponentOfPattern(
+                    kind.nid(), TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid()).count();
+            assertEquals(1, axioms, kind.description());
         }
     }
 
     @Test
     @DisplayName("Journal element classifies under the RichSurfaceTerms root")
     void journalElementAxioms() {
-        int[] axiomNids = EntityService.get().semanticNidsForComponentOfPattern(
+        long axioms = EntityService.get().semanticsForComponentOfPattern(
                 RichSurface.JOURNAL_ELEMENT.nid(),
-                TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid());
-        assertEquals(1, axiomNids.length);
+                TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid()).count();
+        assertEquals(1, axioms);
     }
 }
