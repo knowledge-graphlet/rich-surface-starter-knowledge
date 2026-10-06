@@ -15,9 +15,9 @@
  */
 package network.ike.richsurface.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.Stamp;
-import dev.ikm.tinkar.terms.TinkarTerm;
 
 import static network.ike.richsurface.terms.RichSurface.COMPONENT_LIST_ELEMENT;
 import static network.ike.richsurface.terms.RichSurface.ELEMENT_CONTENT;
@@ -54,14 +54,14 @@ public final class PatternSet {
 
         // ============================================================ 2026-07-03
         ActiveStamp inception = Stamp.active("2026-07-03T00:00:00Z",
-                TinkarTerm.USER, RICH_SURFACE_MODULE, TinkarTerm.DEVELOPMENT_PATH);
+                KernelTerm.USER, RICH_SURFACE_MODULE, KernelTerm.DEVELOPMENT_PATH);
 
         // One manifest semantic per conversation, on the journal-anchor concept:
         // an ordered component-id list of the conversation's elements. Reorder or
         // insert = a new manifest version; replay = walking versions in time.
         RICH_SURFACE.pattern("Journal manifest pattern (RichSurfaceTerms)").at(inception)
                 .meaning(JOURNAL_MANIFEST).purpose(ELEMENT_ORDER)
-                .field(JOURNAL_ELEMENTS, ELEMENT_ORDER, TinkarTerm.COMPONENT_ID_LIST_FIELD)
+                .field(JOURNAL_ELEMENTS, ELEMENT_ORDER, KernelTerm.COMPONENT_ID_LIST_FIELD)
                 .synonym("Journal manifest pattern")
                 .definition("Holds the ordered elements of one conversation journal; a new"
                         + " version per insert or reorder, so replay walks manifest versions"
@@ -72,20 +72,20 @@ public final class PatternSet {
         // semantic uses.
         RICH_SURFACE.pattern("Prose element pattern (RichSurfaceTerms)").at(inception)
                 .meaning(PROSE_ELEMENT).purpose(ELEMENT_CONTENT)
-                .field(PROSE_CONTENT, ELEMENT_CONTENT, TinkarTerm.STRING)
+                .field(PROSE_CONTENT, ELEMENT_CONTENT, KernelTerm.STRING)
                 .synonym("Prose element pattern")
                 .definition("An embedded prose block: markdown with id-bearing k: tokens as"
                         + " the interchange form.");
 
         RICH_SURFACE.pattern("Component-list element pattern (RichSurfaceTerms)").at(inception)
                 .meaning(COMPONENT_LIST_ELEMENT).purpose(ELEMENT_CONTENT)
-                .field(LISTED_COMPONENTS, ELEMENT_CONTENT, TinkarTerm.COMPONENT_ID_LIST_FIELD)
+                .field(LISTED_COMPONENTS, ELEMENT_CONTENT, KernelTerm.COMPONENT_ID_LIST_FIELD)
                 .synonym("Component-list element pattern")
                 .definition("An embedded ad-hoc component list the journal owns.");
 
         RICH_SURFACE.pattern("Reference element pattern (RichSurfaceTerms)").at(inception)
                 .meaning(REFERENCE_ELEMENT).purpose(ELEMENT_CONTENT)
-                .field(REFERENCED_CHRONOLOGY, ELEMENT_CONTENT, TinkarTerm.COMPONENT_FIELD)
+                .field(REFERENCED_CHRONOLOGY, ELEMENT_CONTENT, KernelTerm.COMPONENT_FIELD)
                 .synonym("Reference element pattern")
                 .definition("A block over live knowledge: a component reference resolving"
                         + " latest-on-coordinate — reference, never copy.");

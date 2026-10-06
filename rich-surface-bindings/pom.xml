@@ -14,7 +14,7 @@
 
     <name>Rich Surface Bindings</name>
     <description>
-        Generated bindings for the RichSurface knowledge set: the TinkarTerm-idiom
+        Generated bindings for the RichSurface knowledge set: the
         RichSurfaceTerms class, produced from the ledger by ike:knowledge-bindings —
         resolved UUID literals, definitions as javadoc, autocompletable in any IDE.
         Depends only on tinkar terms, so consumers stay light.

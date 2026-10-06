@@ -15,6 +15,7 @@
  */
 package network.ike.richsurface.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.service.CachingService;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.service.ServiceKeys;
@@ -28,7 +29,6 @@ import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.StampEntity;
 import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.State;
-import dev.ikm.tinkar.terms.TinkarTerm;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -76,8 +76,8 @@ class LedgerReplayTest {
         StampEntity<?> stamp = Entity.getStamp(journalElement.versions().get(0).stampNid());
         assertEquals(State.ACTIVE, stamp.state());
         // Restating the inception tuple derives the same stamp — tuple identity.
-        assertEquals(Stamp.active("2026-07-03T00:00:00Z", TinkarTerm.USER,
-                RichSurface.RICH_SURFACE_MODULE, TinkarTerm.DEVELOPMENT_PATH).time(),
+        assertEquals(Stamp.active("2026-07-03T00:00:00Z", KernelTerm.USER,
+                RichSurface.RICH_SURFACE_MODULE, KernelTerm.DEVELOPMENT_PATH).time(),
                 stamp.time());
         assertEquals(RichSurface.RICH_SURFACE_MODULE.nid(), stamp.moduleNid(),
                 "stamps are scoped by the set's own module concept");
@@ -94,7 +94,7 @@ class LedgerReplayTest {
                 "the module concept's own versions cite the module — well-defined under derived identity");
 
         long descriptions = EntityService.get().semanticsForComponentOfPattern(
-                module.nid(), TinkarTerm.DESCRIPTION_PATTERN.nid()).count();
+                module.nid(), KernelTerm.DESCRIPTION_PATTERN.nid()).count();
         assertEquals(3, descriptions, "FQN + synonym + definition");
     }
 
@@ -111,7 +111,7 @@ class LedgerReplayTest {
         assertEquals(1, manifestVersion.fieldDefinitions().size());
         assertEquals(RichSurface.JOURNAL_ELEMENTS.nid(),
                 manifestVersion.fieldDefinitions().get(0).meaningNid());
-        assertEquals(TinkarTerm.COMPONENT_ID_LIST_FIELD.nid(),
+        assertEquals(KernelTerm.COMPONENT_ID_LIST_FIELD.nid(),
                 manifestVersion.fieldDefinitions().get(0).dataTypeNid());
 
         for (String fqn : new String[]{
@@ -134,7 +134,7 @@ class LedgerReplayTest {
                 RichSurface.PROSE_ELEMENT, RichSurface.COMPONENT_LIST_ELEMENT,
                 RichSurface.REFERENCE_ELEMENT}) {
             long axioms = EntityService.get().semanticsForComponentOfPattern(
-                    kind.nid(), TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid()).count();
+                    kind.nid(), KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid()).count();
             assertEquals(1, axioms, kind.description());
         }
     }
@@ -144,7 +144,7 @@ class LedgerReplayTest {
     void journalElementAxioms() {
         long axioms = EntityService.get().semanticsForComponentOfPattern(
                 RichSurface.JOURNAL_ELEMENT.nid(),
-                TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid()).count();
+                KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid()).count();
         assertEquals(1, axioms);
     }
 }
