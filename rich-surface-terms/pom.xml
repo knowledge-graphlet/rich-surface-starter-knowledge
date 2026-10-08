@@ -27,10 +27,10 @@
             <version>${tinkar.version}</version>
         </dependency>
 
-        <!-- Replay verification over an ephemeral store -->
+        <!-- Replay verification over the spined array's ephemeral mode -->
         <dependency>
             <groupId>dev.ikm.tinkar</groupId>
-            <artifactId>data-ephemeral-provider</artifactId>
+            <artifactId>data-spinedarray-provider</artifactId>
             <version>${tinkar.version}</version>
             <scope>test</scope>
         </dependency>
