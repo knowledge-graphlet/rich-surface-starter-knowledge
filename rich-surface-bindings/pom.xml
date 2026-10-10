@@ -57,7 +57,6 @@
             <plugin>
                 <groupId>network.ike.tooling</groupId>
                 <artifactId>ike-maven-plugin</artifactId>
-                <version>237</version>
                 <executions>
                     <execution>
                         <id>generate-knowledge-bindings</id>
