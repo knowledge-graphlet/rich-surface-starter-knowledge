@@ -15,7 +15,7 @@
  */
 package network.ike.richsurface.terms;
 
-import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.terms.KernelConcept;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.Stamp;
 
@@ -45,7 +45,7 @@ public final class MeaningAndPurposeSet {
 
         // ============================================================ 2026-07-03
         ActiveStamp inception = Stamp.active("2026-07-03T00:00:00Z",
-                KernelTerm.USER, RICH_SURFACE_MODULE, KernelTerm.DEVELOPMENT_PATH);
+                KernelConcept.USER, RICH_SURFACE_MODULE, KernelConcept.DEVELOPMENT_PATH);
 
         // ---- Pattern meanings ------------------------------------------------
 

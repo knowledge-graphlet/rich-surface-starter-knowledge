@@ -65,7 +65,7 @@
                         </goals>
                         <configuration>
                             <packageName>network.ike.richsurface.bindings</packageName>
-                            <className>RichSurfaceTerms</className>
+                            <className>RichSurface</className>
                         </configuration>
                     </execution>
                 </executions>

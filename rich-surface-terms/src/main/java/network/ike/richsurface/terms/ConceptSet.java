@@ -15,7 +15,7 @@
  */
 package network.ike.richsurface.terms;
 
-import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.terms.KernelConcept;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.Stamp;
 
@@ -52,7 +52,7 @@ public final class ConceptSet {
         // element kind. Author is the generic user concept pending a
         // curator-identity decision.
         ActiveStamp inception = Stamp.active("2026-07-03T00:00:00Z",
-                KernelTerm.USER, RICH_SURFACE_MODULE, KernelTerm.DEVELOPMENT_PATH);
+                KernelConcept.USER, RICH_SURFACE_MODULE, KernelConcept.DEVELOPMENT_PATH);
 
         // The module concept every stamp in this set cites — including its own
         // versions' stamps; self-reference is well-defined under derived identity.
