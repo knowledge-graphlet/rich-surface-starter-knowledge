@@ -51,7 +51,12 @@
          effective site URL still starts with https://ike.network/ike-platform/
          while its groupId is not network.ike.platform (ike-issues#380/#383). -->
     <distributionManagement>
-        <site>
+        <!-- child.site.url.inherit.append.path="true" is load-bearing: ike-parent
+             declares its own <site> with the attribute false, and an override that
+             omits the attribute inherits it, so every module would take this URL
+             verbatim and stage into the aggregator's own directory
+             (ike-issues#1284). -->
+        <site child.site.url.inherit.append.path="true">
             <id>ike-site</id>
             <url>https://ike.network/rich-surface-starter-knowledge/</url>
         </site>
